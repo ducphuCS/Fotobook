@@ -1,0 +1,38 @@
+<div class="col-sm-6 col-12 row bg-grey py-2 rounded shadow pr-0 mb-2">
+  <div class="col-sm-6 col-6 thumb album-thumb border-0">
+    <div class="thumb-container justify-content-center row">
+      <div class="images-container">
+        <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="doggo" class="img-fluid thumb-image"/>
+        <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="doggo" class="img-fluid thumb-image"/>
+        <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="doggo" class="img-fluid thumb-image"/>
+      </div>
+      <div class="photo-count">
+        <div class="content">
+          <div class="number"><%= content.photos.size%></div>
+          <div class="label">PHOTOS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 col-12 row mr-0 pr-0">
+    <div class="row align-items-center col-12 mr-0 pr-0 justify-content-between" name="info-part">
+      <div class="col-auto row">
+        <div class="row col-auto">
+          <button class="rounded-circle chosen border-0"><%= content.user.avatar_name%></button>
+          <a href="#" class="btn font-size pl-1 "><%= content.user.name%></a>
+        </div>
+      </div>
+      <div class="col-auto p-0 m-0 float-right">
+        <button type="button" name="follow" class="btn follow py-0 btn-sm rounded-pill font-size-sm">follow</button>
+      </div>
+    </div>
+    <div class="row font-weight-bold col-12" name="title-post"><%= content.title %> </div>
+    <div class="row col-12" name="description-post"><%= content.description %></div>
+    <div class="row justify-content-between align-items-end col-12 mr-0 pr-0">
+      <div class="col text-color font-size love">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="12" height="12" fill="rgb(60, 90, 154)"><path fill-rule="evenodd" d="M7.655 14.916L8 14.25l.345.666a.752.752 0 01-.69 0zm0 0L8 14.25l.345.666.002-.001.006-.003.018-.01a7.643 7.643 0 00.31-.17 22.08 22.08 0 003.433-2.414C13.956 10.731 16 8.35 16 5.5 16 2.836 13.914 1 11.75 1 10.203 1 8.847 1.802 8 3.02 7.153 1.802 5.797 1 4.25 1 2.086 1 0 2.836 0 5.5c0 2.85 2.045 5.231 3.885 6.818a22.075 22.075 0 003.744 2.584l.018.01.006.003h.002z"></path></svg><span>  <%= content.likes_count%></span>
+      </div>
+      <div class="col-auto text-secondary font-size-sm mr-0 pr-0 text-right"><%= l content.updated_at, format: :last_update%></div>
+    </div>
+  </div>
+</div>

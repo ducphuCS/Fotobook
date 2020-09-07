@@ -1,0 +1,116 @@
+
+
+<%#= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %>
+
+<%#= link_to "Back", :back %>
+
+
+<div class="container-fluid font">
+  <div class="row bg justify-content-between home-bar" name="home-bar">
+    <div class="row col-sm-6 col-8 align-items-center h-100 m-0 pr-0">
+      <div class="col-4 pr-0 ml-3">
+        <a class="navbar-brand float-right text-white" href="<%= discover_user_path(content: "photo", id: current_user.id) %>" ><%= t ('brand') %></a>
+      </div>
+      <div class="col py-1 h-100 pr-0">
+        <input class="col h-100 rounded border-0" type="text" name="search-bar" placeholder="Search Photo / Album"/>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-sm row col-sm-6 col-4 m-0 p-0 justify-content-end">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#user-bar" aria-controls="user-bar" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="nav-toggle-icon btn rounded-circle bg-white text-color border-0 px-2"><%= @user.avatar_name%></a>
+      </button>
+      <div class="collapse navbar-collapse" id="user-bar" style="z-index: 100">
+        <div class="navbar-nav col-12 justify-content-end align-items-center bg">
+          <div class="col-auto row navbar-nav">
+            <a href="<%= user_path(current_user.id)%>" class="nav-item nav-link btn rounded-circle bg-white text-color border-0 px-2"><%= @user.avatar_name%></a>
+            <a href="<%= user_path(current_user.id)%>" class="nav-item nav-link btn text-white border-0"><%= @user.name%></a>
+          </div>
+          <div class="col-3 navbar-nav">
+            <%= link_to t('logout'), destroy_user_session_path, {class: "nav-item nav-link btn text-white border-0", method: "delete"}%>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="row bg-grey">
+    <div class="col pt-4 align-items-center">
+      <div class="row col ml-2">
+        <%= link_to I18n.t('feed'), feed_user_path(current_user.id), {class: "btn text-secondary"}%>
+      </div>
+      <div class="row col ml-2">
+        <%= link_to I18n.t('discover'), discover_user_path(content: "photo", id: current_user.id), {class: "btn text-secondary"}%>
+      </div>
+    </div>
+    <div class="col-sm-9 col-12 p-3">
+      <div class="col bg-white pb-3 mb-5">
+        <div class="font-weight-bold border-bottom py-4" style="font-size:20px;"><%= t ('.header')%></div>
+        <div class="row mb-5 justify-content-center">
+          <div class="row col-12">
+            <div class="col-4"></div>
+            <div class="col-8">
+              <div class="row mt-5 mb-3 position-relative col-sm-4 col-12 justify-content-center" name="profile-image">
+                <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="profile-image" class="img-fluid rounded"/>
+                <button type="button" name="change-profile" class="btn bg-white text-secondary change">CHANGE</button>
+              </div>
+            </div>
+          </div>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "col-sm-8 col-12" }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="row mb-3" style="width: 100%;font-size:16px">
+              <div class="col-12 row text-color justify-content-center my-2 font-weight-bold">
+                <div class="col-4"></div>
+                <div class="col-8">Basic Information</div>
+              </div>
+
+              <div class="field form-group row col-12">
+                <%= f.label :firstname, t('.firstname'), class: "col text-right" %>
+                <%= f.text_field :firstname, autofocus: true, autocomplete: "firstname", placeholder: "First Name", class: "form-control col-8" %>
+              </div>
+
+              <div class="field form-group row col-12">
+                <%= f.label :lastname, t('.lastname'), class: "col-4 text-right" %>
+                <%= f.text_field :lastname, autofocus: true, autocomplete: "lastname", placeholder: "Last Name", class: "form-control col-8" %>
+              </div>
+
+              <div class="field form-group row col-12">
+                <%= f.label :email, t('.email'), class: "col-4 text-right" %>
+                <%= f.email_field :email, autocomplete: "email", class:"form-control col-8", placeholder:"someone@example.com" %>
+              </div>
+
+              <div class="actions form-group row col">
+                <div class="col-4"></div>
+                <%= f.submit t('.save'), class: "btn add px-3" %>
+              </div>
+            </div>
+
+            <div class="row mb-3" style="width: 100%;font-size:16px">
+              <div class="field form-group row col-12">
+                <%= f.label :current_password, t('.current_password'), class: "col-4 text-right" %>
+                <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control col-8", placeholder:"Current Password" %>
+              </div>
+
+              <div class="field form-group row col-12">
+                <%= f.label :password, t('.password'), class: "col-4 text-right" %>
+                <%= f.password_field :password, autocomplete: "new-password", class: "form-control col-8", placeholder: "New Password" %>
+              </div>
+
+              <div class="field form-group row col-12">
+                <%= f.label :password_confirmation, t('.password_confirmation'), class: "col-4 text-right" %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control col-8", placeholder: "Password Confirmation" %>
+              </div>
+
+              <div class="actions form-group row col">
+                <div class="col-4"></div>
+                <%= f.submit t('.save'), class: "btn add px-3" %>
+              </div>
+            </div>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>

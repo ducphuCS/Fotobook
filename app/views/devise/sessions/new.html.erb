@@ -1,0 +1,61 @@
+
+<div class="container-fluid">
+  <div class="row bg justify-content-between" name="home-bar" style="height:40px;">
+    <div class="row col-6 align-items-center h-100 m-0 pr-0">
+      <div class="col-4 pr-0 ml-3">
+        <a class="navbar-brand float-right text-white" href="<%= discover_user_path(content: "photo", id:0) %>" ><%= t ('brand') %></a>
+      </div>
+      <div class="col py-1 h-100 pr-0">
+        <input class="col h-100 rounded border-0" type="text" name="search-bar" placeholder="Search Photo / Album"/>
+      </div>
+    </div>
+    <div class="row col-6 justify-content-end align-items-center m-0 pl-0">
+      <div class="col-3">
+        <%= link_to t('login'), new_user_session_path, {class: "btn text-white border-0 bg"}%>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="height:30px;">
+  </div>
+  <div class="row justify-content-center mt-5">
+    <div class="col-6">
+      <h2 class="text-center text-color"><%= t ('.fotobook_login')%></h2>
+    </div>
+  </div>
+  <div class="row justify-content-center my-4">
+    <div class="col-sm-3 col-8 row border rounded-lg py-2 justify-content-center" >
+      <img src="https://img.icons8.com/color/48/000000/google-logo.png" class="img-fluid col-auto" />
+      <img src="https://img.icons8.com/color/48/000000/facebook-circled.png" class="img-fluid col-auto" />
+      <img src="https://img.icons8.com/color/48/000000/twitter-circled.png" class="img-fluid col-auto" />
+    </div>
+  </div>
+  <div class="row col justify-content-center">
+    <div class="col-8 col-sm-4 shadow border bg-grey mb-5 pb-4 justify-content-center row">
+      <div class="row my-5 justify-content-center col-12" >
+        <img class="rounded-circle" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="">
+      </div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "row justify-content-center col-12"}) do |f| %>
+        <div class="field col-11">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email", class:"form-control", style:"border-bottom-left-radius: 0; border-bottom-right-radius:0" %>
+        </div>
+
+        <div class="field col-11">
+          <%= f.password_field :password, autocomplete: "current-password", placeholder:"Password", class:"form-control", style:"border-bottom-left-radius: 0; border-bottom-right-radius:0" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+
+        <div class="actions justify-content-center row col-12 my-4">
+          <%= f.submit t('.login'), class: "btn chosen col-4 rounded-lg", style:"height:50px; font-size:20px" %>
+        </div>
+      <% end %>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
+<%= javascript_pack_tag 'login_validation.js'%>

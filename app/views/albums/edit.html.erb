@@ -1,0 +1,9 @@
+<%= form_for @album, id: "form" do |f| %>
+  <%= f.text_field(:title, value: "")%>
+  <%= submit_tag("Edit") %>
+<% end %>
+<br>
+<% if flash[:title_change_error] %>
+  <%= flash[:title_change_error] %>
+<% end %>
+<%= javascript_pack_tag 'validation.js' %>
