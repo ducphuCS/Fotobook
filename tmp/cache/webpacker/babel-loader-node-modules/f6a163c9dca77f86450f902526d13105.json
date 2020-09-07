@@ -1,1 +1,0 @@
-{"ast":null,"code":"var core = require('./core');\n\nmodule.exports = function isCore(x) {\n  return Object.prototype.hasOwnProperty.call(core, x);\n};","map":null,"metadata":{},"sourceType":"module"}
