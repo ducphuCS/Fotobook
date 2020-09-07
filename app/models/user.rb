@@ -57,7 +57,7 @@ class User < ApplicationRecord
   def send_welcome_mail
     puts "after_save User"
     # UserMailer.with(user: self).welcome_mail.deliver_now
-    SignUpMailerJob.perform_later self
+    SignUpMailerJob.perform_now self
   end
   # before_create :set_default_value_for_last_login
   # def set_default_value_for_last_login
