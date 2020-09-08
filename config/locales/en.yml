@@ -40,11 +40,23 @@ en:
       album: "ALBUM"
     show:
       edit: "Edit Profile"
-      photos_tab: "PHOTOS"
-      albums_tab: "ALBUMS"
-      followings_tab: "FOLLOWINGS"
-      followers_tab: "FOLLOWERS"
+      photos_tab: " PHOTOS"
+      albums_tab: " ALBUMS"
+      followings_tab: " FOLLOWINGS"
+      followers_tab: " FOLLOWERS"
       add_photo: "Add Photo"
+      add_album: "Add Album"
+    block_photo_tab:
+      edit_content: "EDIT"
+    block_album_tab:
+      edit_content: "EDIT"
+      photos: "PHOTOS"
+    block_following_tab:
+      photos: "PHOTOS"
+      albums: "ALBUMS"
+    block_follower_tab:
+      photos: "PHOTOS"
+      albums: "ALBUMS"
   logout: "Logout"
   feed: "Feed"
   discover: "Discover"
