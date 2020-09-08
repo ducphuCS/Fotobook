@@ -1,0 +1,430 @@
+<div class="container-fluid font">
+  <div class="row bg justify-content-between home-bar" name="home-bar">
+    <div class="row col-sm-6 col-8 align-items-center h-100 m-0 pr-0">
+      <div class="col-4 pr-0 ml-3">
+        <a class="navbar-brand float-right text-white" href="<%= discover_user_path(content: "photo", id: current_user.id) %>" ><%= t ('brand') %></a>
+      </div>
+      <div class="col py-1 h-100 pr-0">
+        <input class="col h-100 rounded border-0" type="text" name="search-bar" placeholder="Search Photo / Album"/>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-sm row col-sm-6 col-4 m-0 p-0 justify-content-end">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#user-bar" aria-controls="user-bar" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="nav-toggle-icon btn rounded-circle bg-white text-color border-0 px-2"><%= @user.avatar_name%></a>
+      </button>
+      <div class="collapse navbar-collapse" id="user-bar" style="z-index: 100">
+        <div class="navbar-nav col-12 justify-content-end align-items-center bg">
+          <div class="col-auto row navbar-nav">
+            <a href="<%= user_path(current_user.id)%>" class="nav-item nav-link btn rounded-circle bg-white text-color border-0 px-2"><%= @user.avatar_name%></a>
+            <a href="<%= user_path(current_user.id)%>" class="nav-item nav-link btn text-white border-0"><%= @user.name%></a>
+          </div>
+          <div class="col-3 navbar-nav">
+            <%= link_to t('logout'), destroy_user_session_path, {class: "nav-item nav-link btn text-white border-0", method: "delete"}%>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="row bg-grey">
+    <div class="col pt-4 align-items-center">
+      <div class="row col ml-2">
+        <%= link_to I18n.t('feed'), feed_user_path(current_user.id), {class: "btn text-secondary"}%>
+      </div>
+      <div class="row col ml-2">
+        <%= link_to I18n.t('discover'), discover_user_path(content: "photo", id: current_user.id), {class: "btn text-secondary"}%>
+      </div>
+    </div>
+    <div class="col-sm-9 col-12 p-3">
+      <div class="bg-white col">
+        <div class="col row py-5 px-4" name="profile-header">
+          <div class="col-sm-3 col-12">
+            <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="avatar" class="img-fluid rounded-circle" style="width:100%" />
+          </div>
+          <div class="col-sm-9 col-12">
+            <div class="row" style="height:40px;">
+              <button class="btn profile rounded-pill btn-sm font-weight-bold" type="button" name="profile" style="height:30px"><%= t ('.edit')%></button>
+            </div>
+            <div class="row mt-1">
+              <h1 name="user-name" class="font-weight-bold"><%= @user.name%></h1>
+            </div>
+            <div class="row pl-0" >
+              <div class="col-auto border-right pl-0 text-color tab" name="photos">
+                <span name="num-photos" class="font-size-lg"><%= @user.photo_count%></span><%= t('.photos_tab')%>
+              </div>
+              <div class="col-auto border-right text-secondary tab" name="albums">
+                <span name="num-albums" class="font-size-lg"><%= @user.album_count%></span><%= t('.albums_tab')%>
+              </div>
+              <div class="col-auto border-right text-secondary tab" name="followings">
+                <span name="num-follwings" class="font-size-lg"><% @user.followers.size %></span><%= t('.followings_tab')%>
+              </div>
+              <div class="col-auto text-secondary tab" name="followers">
+                <span name="num-followers" class="font-size-lg"><% @user.followees.size %></span><%= t('.followers_tab')%>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="" name="photos-tab">
+          <!-- model for row -->
+          <div class="row mx-3 mb-4">
+            <div class="col-12">
+              <a type="button" name="add" class="float-right btn rounded-pill add py-1" href="new_photo.html"><%= t('.add_photo')%></a>
+            </div>
+          </div>
+          <div class="row mx-3 my-1">
+            <div class="col-sm col-6 px-3  text-center">
+              <div class="position-relative">
+                <div class="lock rounded-circle bg-white px-1 py-0 m-1">
+                  <img src="https://img.icons8.com/android/24/000000/lock.png" height="12px" width="12px" class="absolute"/>
+                </div>
+                <img src="img/doggo.jpeg" alt="" class="img-fluid rounded ">
+                <button class="btn rounded-pill btn-sm edit font-size py-0 m-1 text-white">EDIT</button>
+              </div>
+              <p name="photo-tilte" class="font-size">Photo title goes here</p>
+            </div>
+            <div class="col-sm col-6 px-3  text-center">
+              <div class="position-relative">
+                <img src="img/doggo.jpeg" alt="" class="img-fluid rounded ">
+                <button class="btn rounded-pill btn-sm edit font-size py-0 m-1 text-white">EDIT</button>
+              </div>
+              <p name="photo-tilte" class="font-size">Photo title goes here</p>
+            </div>
+            <div class="col-sm col-6 px-3 text-center">
+              <div class="position-relative">
+                <img src="img/doggo.jpeg" alt="" class="img-fluid rounded ">
+              <button class="btn rounded-pill btn-sm edit font-size py-0 m-1 text-white">EDIT</button>
+              </div>
+              <p name="photo-tilte" class="font-size">Photo title goes here</p>
+            </div>
+            <div class="col-sm col-6 px-3 text-center">
+              <div class="position-relative">
+                <img src="img/doggo.jpeg" alt="" class="img-fluid rounded ">
+                <button class="btn rounded-pill btn-sm edit font-size py-0 m-1 text-white">EDIT</button>
+              </div>
+              <p name="photo-tilte" class="font-size">Photo title goes here</p>
+            </div>
+          </div>
+          <!--  -->
+          <div class="row mx-3 my-1">
+            <div class="col-sm col-6 px-3 text-center">
+              <div class="position-relative">
+                <img src="img/doggo.jpeg" alt="" class="img-fluid rounded ">
+                <button class="btn rounded-pill btn-sm edit font-size py-0 m-1 text-white">EDIT</button>
+              </div>
+              <p name="photo-tilte" class="font-size">Photo title goes here</p>
+            </div>
+            <div class="col-sm col-6 px-3 text-center">
+              <div class="position-relative">
+                <img src="img/doggo.jpeg" alt="" class="img-fluid rounded ">
+                <button class="btn rounded-pill btn-sm edit font-size py-0 m-1 text-white">EDIT</button>
+              </div>
+              <p name="photo-tilte" class="font-size">Photo title goes here</p>
+            </div>
+            <div class="col-sm col-6 px-3 text-center">
+              <div class="position-relative">
+                <img src="img/doggo.jpeg" alt="" class="img-fluid rounded ">
+                <button class="btn rounded-pill btn-sm edit font-size py-0 m-1 text-white">EDIT</button>
+              </div>
+              <p name="photo-tilte" class="font-size">Photo title goes here</p>
+            </div>
+            <div class="col-sm col-6 px-3 text-center">
+              <div class="position-relative">
+                <img src="img/doggo.jpeg" alt="" class="img-fluid rounded ">
+                <button class="btn rounded-pill btn-sm edit font-size py-0 m-1 text-white">EDIT</button>
+              </div>
+              <p name="photo-tilte" class="font-size">Photo title goes here</p>
+            </div>
+          </div>
+        </div>
+        <div class="d-none" name="albums-tab">
+          <!-- model for album row -->
+          <div class="row mx-3 mb-4">
+            <div class="col-12">
+              <a type="button" name="add" class="float-right btn rounded-pill add py-1" href="new_album.html">Add Album</a>
+            </div>
+          </div>
+          <div class="row my-1">
+            <div class="col-sm-3 col-6 thumb album-thumb border-0">
+              <div class="thumb-container justify-content-center row">
+                <div class="images-container">
+                  <div class="lock rounded-circle bg-white px-1 py-0 m-1">
+                    <img src="https://img.icons8.com/android/24/000000/lock.png" height="12px" width="12px" class="absolute"/>
+                  </div>
+                  <img src="img/doggo.jpeg" alt="" class="thumb-image img-fluid">
+                  <img src="img/doggo.jpeg" alt="" class="thumb-image img-fluid">
+                  <img src="img/doggo.jpeg" alt="" class="thumb-image img-fluid">
+                  <button class="btn rounded-pill btn-sm edit font-size py-0 m-1 text-white">EDIT</button>
+                </div>
+                <div class="photo-count">
+                  <div class="content">
+                    <div class="number">
+                      13
+                    </div>
+                    <div class="label">
+                      PHOTOS
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row text-center justify-content-center pt-3">
+                <p name="album title" class="font-size">Album title goes here</p>
+              </div>
+            </div>
+            <div class="col-sm-3 col-6 thumb album-thumb border-0">
+              <div class="thumb-container justify-content-center row">
+                <div class="images-container ">
+                  <img src="img/doggo.jpeg" alt="" class="thumb-image img-fluid">
+                  <img src="img/doggo.jpeg" alt="" class="thumb-image img-fluid">
+                  <img src="img/doggo.jpeg" alt="" class="thumb-image img-fluid">
+                  <button class="btn rounded-pill btn-sm edit font-size py-0 m-1 text-white">EDIT</button>
+                </div>
+                <div class="photo-count">
+                  <div class="content">
+                    <div class="number">
+                      14
+                    </div>
+                    <div class="label">
+                      PHOTOS
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row text-center justify-content-center pt-3">
+                <p name="album title" class="font-size">Album title goes here</p>
+              </div>
+            </div>
+            <div class="col-sm-3 col-6 thumb album-thumb border-0">
+              <div class="thumb-container justify-content-center row">
+                <div class="images-container">
+                  <img src="img/doggo.jpeg" alt="" class="thumb-image img-fluid">
+                  <img src="img/doggo.jpeg" alt="" class="thumb-image img-fluid">
+                  <img src="img/doggo.jpeg" alt="" class="thumb-image img-fluid">
+                  <button class="btn rounded-pill btn-sm edit font-size py-0 m-1 text-white">EDIT</button>
+                </div>
+                <div class="photo-count">
+                  <div class="content">
+                    <div class="number">
+                      2
+                    </div>
+                    <div class="label">
+                      PHOTOS
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row text-center justify-content-center pt-3">
+                <p name="album title" class="font-size">Album title goes here</p>
+              </div>
+            </div>
+            <div class="col-sm-3 col-6 thumb album-thumb border-0">
+              <div class="thumb-container justify-content-center row">
+                <div class="images-container">
+                  <img src="img/doggo.jpeg" alt="" class="thumb-image img-fluid">
+                  <img src="img/doggo.jpeg" alt="" class="thumb-image img-fluid">
+                  <img src="img/doggo.jpeg" alt="" class="thumb-image img-fluid">
+                  <button class="btn rounded-pill btn-sm edit font-size py-0 m-1 text-white">EDIT</button>
+                </div>
+                <div class="photo-count">
+                  <div class="content">
+                    <div class="number">
+                      7
+                    </div>
+                    <div class="label">
+                      PHOTOS
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row text-center justify-content-center pt-3">
+                <p name="album title" class="font-size">Album title goes here</p>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+        </div>
+        <div class="d-none" name="followings-tab">
+          <!-- model for followings-tab row -->
+          <div class="row mx-3 my-1">
+            <div class="col row bg-grey shadow rounded justify-content-center mx-2 my-1">
+              <div class="row mt-3 justify-content-center">
+                <img src="img/doggo.jpeg" alt="" class="col-8 img-fluid rounded-circle">
+              </div>
+              <div class="my-1 justify-content-center row col-12">
+                <p class="font-weight-bold mb-0">Jame Nguyen</p>
+              </div>
+              <div class="row justify-content-center col-12">
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">22</div>
+                  <div class="row justify-content-center text-color font-size">PHOTOS</div>
+                </div>
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">105</div>
+                  <div class="row justify-content-center text-color font-size">ALBUMS</div>
+                </div>
+              </div>
+              <div class="row col justify-content-center mt-2 mb-3">
+                <button type="button" name="follow" class="btn follow rounded-pill py-0 my-profile">unfollow</button>
+              </div>
+            </div>
+            <div class="col row bg-grey shadow rounded justify-content-center mx-2 my-1">
+              <div class="row mt-3 justify-content-center">
+                <img src="img/doggo.jpeg" alt="" class="col-8 img-fluid rounded-circle">
+              </div>
+              <div class="my-1 justify-content-center row col-12">
+                <p class="font-weight-bold mb-0">Jame Nguyen</p>
+              </div>
+              <div class="row justify-content-center col-12">
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">22</div>
+                  <div class="row justify-content-center text-color font-size">PHOTOS</div>
+                </div>
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">105</div>
+                  <div class="row justify-content-center text-color font-size">ALBUMS</div>
+                </div>
+              </div>
+              <div class="row col justify-content-center mt-2 mb-3">
+                <button type="button" name="follow" class="btn follow rounded-pill py-0 my-profile">unfollow</button>
+              </div>
+            </div>
+            <div class="col row bg-grey shadow rounded justify-content-center mx-2 my-1">
+              <div class="row mt-3 justify-content-center">
+                <img src="img/doggo.jpeg" alt="" class="col-8 img-fluid rounded-circle">
+              </div>
+              <div class="my-1 justify-content-center row col-12">
+                <p class="font-weight-bold mb-0">Jame Nguyen</p>
+              </div>
+              <div class="row justify-content-center col-12">
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">22</div>
+                  <div class="row justify-content-center text-color font-size">PHOTOS</div>
+                </div>
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">105</div>
+                  <div class="row justify-content-center text-color font-size">ALBUMS</div>
+                </div>
+              </div>
+              <div class="row col justify-content-center mt-2 mb-3">
+                <button type="button" name="follow" class="btn follow rounded-pill py-0 my-profile">unfollow</button>
+              </div>
+            </div>
+            <div class="col row bg-grey shadow rounded justify-content-center mx-2 my-1">
+              <div class="row mt-3 justify-content-center">
+                <img src="img/doggo.jpeg" alt="" class="col-8 img-fluid rounded-circle">
+              </div>
+              <div class="my-1 justify-content-center row col-12">
+                <p class="font-weight-bold mb-0">Jame Nguyen</p>
+              </div>
+              <div class="row justify-content-center col-12">
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">22</div>
+                  <div class="row justify-content-center text-color font-size">PHOTOS</div>
+                </div>
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">105</div>
+                  <div class="row justify-content-center text-color font-size">ALBUMS</div>
+                </div>
+              </div>
+              <div class="row col justify-content-center mt-2 mb-3">
+                <button type="button" name="follow" class="btn follow rounded-pill py-0 my-profile">unfollow</button>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+        </div>
+        <div class="d-none" name="followers-tab">
+          <!-- model for followers-tab row -->
+          <div class="row mx-3 my-1">
+            <div class="col row bg-grey shadow rounded justify-content-center mx-2 my-1">
+              <div class="row mt-3 justify-content-center">
+                <img src="img/doggo.jpeg" alt="" class="col-8 img-fluid rounded-circle">
+              </div>
+              <div class="my-1 justify-content-center row col-12">
+                <p class="font-weight-bold mb-0">Jame Nguyen</p>
+              </div>
+              <div class="row justify-content-center col-12">
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">22</div>
+                  <div class="row justify-content-center text-color font-size">PHOTOS</div>
+                </div>
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">105</div>
+                  <div class="row justify-content-center text-color font-size">ALBUMS</div>
+                </div>
+              </div>
+              <div class="row col justify-content-center mt-2 mb-3">
+                <button type="button" name="follow" class="btn follow rounded-pill py-0">follow</button>
+              </div>
+            </div>
+            <div class="col row bg-grey shadow rounded justify-content-center mx-2 my-1">
+              <div class="row mt-3 justify-content-center">
+                <img src="img/doggo.jpeg" alt="" class="col-8 img-fluid rounded-circle">
+              </div>
+              <div class="my-1 justify-content-center row col-12">
+                <p class="font-weight-bold mb-0">Jame Nguyen</p>
+              </div>
+              <div class="row justify-content-center col-12">
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">22</div>
+                  <div class="row justify-content-center text-color font-size">PHOTOS</div>
+                </div>
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">105</div>
+                  <div class="row justify-content-center text-color font-size">ALBUMS</div>
+                </div>
+              </div>
+              <div class="row col justify-content-center mt-2 mb-3">
+                <button type="button" name="follow" class="btn follow rounded-pill py-0">follow</button>
+              </div>
+            </div>
+            <div class="col row bg-grey shadow rounded justify-content-center mx-2 my-1">
+              <div class="row mt-3 justify-content-center">
+                <img src="img/doggo.jpeg" alt="" class="col-8 img-fluid rounded-circle">
+              </div>
+              <div class="my-1 justify-content-center row col-12">
+                <p class="font-weight-bold mb-0">Jame Nguyen</p>
+              </div>
+              <div class="row justify-content-center col-12">
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">22</div>
+                  <div class="row justify-content-center text-color font-size">PHOTOS</div>
+                </div>
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">105</div>
+                  <div class="row justify-content-center text-color font-size">ALBUMS</div>
+                </div>
+              </div>
+              <div class="row col justify-content-center mt-2 mb-3">
+                <button type="button" name="follow" class="btn follow rounded-pill py-0">follow</button>
+              </div>
+            </div>
+            <div class="col row bg-grey shadow rounded justify-content-center mx-2 my-1">
+              <div class="row mt-3 justify-content-center">
+                <img src="img/doggo.jpeg" alt="" class="col-8 img-fluid rounded-circle">
+              </div>
+              <div class="my-1 justify-content-center row col-12">
+                <p class="font-weight-bold mb-0">Jame Nguyen</p>
+              </div>
+              <div class="row justify-content-center col-12">
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">22</div>
+                  <div class="row justify-content-center text-color font-size">PHOTOS</div>
+                </div>
+                <div class="col">
+                  <div class="row justify-content-center text-color font-weight-bold font-size-lg">105</div>
+                  <div class="row justify-content-center text-color font-size">ALBUMS</div>
+                </div>
+              </div>
+              <div class="row col justify-content-center mt-2 mb-3">
+                <button type="button" name="follow" class="btn follow rounded-pill py-0">follow</button>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+        </div>
+      </div>
+    </div>
+    <div class="col">
+
+    </div>
+  </div>
+</div>

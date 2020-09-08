@@ -38,6 +38,13 @@ en:
       title: "Fotobook"
       photo: "PHOTO"
       album: "ALBUM"
+    show:
+      edit: "Edit Profile"
+      photos_tab: "PHOTOS"
+      albums_tab: "ALBUMS"
+      followings_tab: "FOLLOWINGS"
+      followers_tab: "FOLLOWERS"
+      add_photo: "Add Photo"
   logout: "Logout"
   feed: "Feed"
   discover: "Discover"

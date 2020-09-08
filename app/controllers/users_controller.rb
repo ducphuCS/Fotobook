@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     end
   end
   def show
-
+    @user = User.find(get_user_id)
   end
   def feed
 
