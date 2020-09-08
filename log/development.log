@@ -46484,3 +46484,328 @@ puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
 puma (4.3.5) lib/puma/server.rb:472:in `process_client'
 puma (4.3.5) lib/puma/server.rb:328:in `block in run'
 puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/users/1" for 127.0.0.1 at 2020-09-08 13:23:11 +0700
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+  Rendering users/show.html.erb within layouts/application
+  Rendered shared/_homebar.html.erb (Duration: 3.2ms | Allocations: 2702)
+  Rendered shared/_feed_discover.html.erb (Duration: 0.5ms | Allocations: 258)
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."followee_id" = $1[0m  [["followee_id", 1]]
+  ↳ app/views/users/show.html.erb:28
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 1]]
+  ↳ app/views/users/show.html.erb:31
+  [1m[36mPhoto Load (0.4ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:43
+  Rendered users/_block_photo_tab.html.erb (Duration: 1.2ms | Allocations: 341)
+  Rendered users/_block_photo_tab.html.erb (Duration: 0.8ms | Allocations: 225)
+  [1m[36mAlbum Load (0.4ms)[0m  [1m[34mSELECT "albums".* FROM "albums" WHERE "albums"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:55
+  [1m[36mPhoto Load (0.7ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 11], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 11]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 11.2ms | Allocations: 4690)
+  [1m[36mPhoto Load (0.7ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 1], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[36mCACHE Photo Load (0.0ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 1], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 7.5ms | Allocations: 2797)
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 3], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 3]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 3.2ms | Allocations: 1968)
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 7], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 7]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 3.1ms | Allocations: 1968)
+  Rendered users/show.html.erb within layouts/application (Duration: 92.2ms | Allocations: 45230)
+[Webpacker] Everything's up-to-date. Nothing to do
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 181ms (Views: 124.4ms | ActiveRecord: 20.2ms | Allocations: 77525)
+
+
+Started GET "/users/img/doggo.jpeg" for 127.0.0.1 at 2020-09-08 13:23:11 +0700
+  
+ActionController::RoutingError (No route matches [GET] "/users/img/doggo.jpeg"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.4) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.4) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.4) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.4) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/users/1" for 127.0.0.1 at 2020-09-08 13:24:28 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+  Rendering users/show.html.erb within layouts/application
+  Rendered shared/_homebar.html.erb (Duration: 1.5ms | Allocations: 436)
+  Rendered shared/_feed_discover.html.erb (Duration: 1.1ms | Allocations: 246)
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."followee_id" = $1[0m  [["followee_id", 1]]
+  ↳ app/views/users/show.html.erb:28
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 1]]
+  ↳ app/views/users/show.html.erb:31
+  [1m[36mPhoto Load (0.5ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:43
+  Rendered users/_block_photo_tab.html.erb (Duration: 0.8ms | Allocations: 319)
+  Rendered users/_block_photo_tab.html.erb (Duration: 1.4ms | Allocations: 193)
+  [1m[36mAlbum Load (0.7ms)[0m  [1m[34mSELECT "albums".* FROM "albums" WHERE "albums"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:55
+  [1m[36mPhoto Load (0.9ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 11], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 11]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 7.0ms | Allocations: 2272)
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 1], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[36mCACHE Photo Load (0.0ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 1], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 4.6ms | Allocations: 2796)
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 3], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 3]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 3.0ms | Allocations: 1968)
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 7], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 7]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 2.9ms | Allocations: 1968)
+  Rendered users/show.html.erb within layouts/application (Duration: 41.0ms | Allocations: 15782)
+[Webpacker] Everything's up-to-date. Nothing to do
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 64ms (Views: 50.9ms | ActiveRecord: 6.6ms | Allocations: 28392)
+
+
+Started GET "/users/img/doggo.jpeg" for 127.0.0.1 at 2020-09-08 13:24:28 +0700
+  
+ActionController::RoutingError (No route matches [GET] "/users/img/doggo.jpeg"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.4) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.4) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.4) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.4) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+webpacker (4.3.0) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/users/1" for 127.0.0.1 at 2020-09-08 13:28:07 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+  Rendering users/show.html.erb within layouts/application
+  Rendered shared/_homebar.html.erb (Duration: 4.7ms | Allocations: 2460)
+  Rendered shared/_feed_discover.html.erb (Duration: 0.6ms | Allocations: 250)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."followee_id" = $1[0m  [["followee_id", 1]]
+  ↳ app/views/users/show.html.erb:28
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 1]]
+  ↳ app/views/users/show.html.erb:31
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:43
+  Rendered users/_block_photo_tab.html.erb (Duration: 0.8ms | Allocations: 331)
+  Rendered users/_block_photo_tab.html.erb (Duration: 0.5ms | Allocations: 194)
+  [1m[36mAlbum Load (0.7ms)[0m  [1m[34mSELECT "albums".* FROM "albums" WHERE "albums"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:55
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 11], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 11]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 7.3ms | Allocations: 4670)
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 1], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[36mCACHE Photo Load (0.0ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 1], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 4.9ms | Allocations: 2796)
+  [1m[36mPhoto Load (0.7ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 3], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 3]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 7.9ms | Allocations: 1968)
+  [1m[36mPhoto Load (0.5ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 7], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 7]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 5.3ms | Allocations: 1968)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 1]]
+  ↳ app/views/users/show.html.erb:69
+  Rendered users/show.html.erb within layouts/application (Duration: 517.5ms | Allocations: 220893)
+Completed 500 Internal Server Error in 550ms (ActiveRecord: 21.6ms | Allocations: 233658)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `followee' for #<#<Class:0x000055f2b7d16e60>:0x000055f2b7d03298>
+Did you mean?  follower):
+    67:         <div class="d-none" name="followers-tab">
+    68:           <div class="row mx-3 my-1">
+    69:             <% @user.followees.each do |follower| %>
+    70:               <%= render partial: "block_follower_tab", locals: {followee: followee} %>
+    71:             <% end %>
+    72:           </div>
+    73:         </div>
+  
+app/views/users/show.html.erb:70
+app/views/users/show.html.erb:69
+Started GET "/users/1" for 127.0.0.1 at 2020-09-08 13:28:23 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+  Rendering users/show.html.erb within layouts/application
+  Rendered shared/_homebar.html.erb (Duration: 0.8ms | Allocations: 428)
+  Rendered shared/_feed_discover.html.erb (Duration: 0.5ms | Allocations: 244)
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."followee_id" = $1[0m  [["followee_id", 1]]
+  ↳ app/views/users/show.html.erb:28
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 1]]
+  ↳ app/views/users/show.html.erb:31
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:43
+  Rendered users/_block_photo_tab.html.erb (Duration: 1.4ms | Allocations: 316)
+  Rendered users/_block_photo_tab.html.erb (Duration: 1.0ms | Allocations: 191)
+  [1m[36mAlbum Load (0.3ms)[0m  [1m[34mSELECT "albums".* FROM "albums" WHERE "albums"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:55
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 11], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 11]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 8.0ms | Allocations: 2272)
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 1], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[36mCACHE Photo Load (0.0ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 1], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 5.2ms | Allocations: 2795)
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 3], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 3]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 3.1ms | Allocations: 1968)
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 7], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 7]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 4.5ms | Allocations: 1968)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 1]]
+  ↳ app/views/users/show.html.erb:69
+  Rendered users/_block_follower_tab.html.erb (Duration: 1.3ms | Allocations: 244)
+  Rendered users/_block_follower_tab.html.erb (Duration: 0.2ms | Allocations: 57)
+  Rendered users/show.html.erb within layouts/application (Duration: 56.2ms | Allocations: 17078)
+[Webpacker] Everything's up-to-date. Nothing to do
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 73ms (Views: 63.9ms | ActiveRecord: 6.3ms | Allocations: 29588)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2020-09-08 13:29:29 +0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 25], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:11:in `show'
+  Rendering users/show.html.erb within layouts/application
+  Rendered shared/_homebar.html.erb (Duration: 0.9ms | Allocations: 427)
+  Rendered shared/_feed_discover.html.erb (Duration: 1.5ms | Allocations: 244)
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."follower_id" WHERE "follows"."followee_id" = $1[0m  [["followee_id", 1]]
+  ↳ app/views/users/show.html.erb:28
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 1]]
+  ↳ app/views/users/show.html.erb:31
+  [1m[36mPhoto Load (0.6ms)[0m  [1m[34mSELECT "photos".* FROM "photos" WHERE "photos"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:43
+  Rendered users/_block_photo_tab.html.erb (Duration: 1.2ms | Allocations: 316)
+  Rendered users/_block_photo_tab.html.erb (Duration: 1.1ms | Allocations: 191)
+  [1m[36mAlbum Load (0.7ms)[0m  [1m[34mSELECT "albums".* FROM "albums" WHERE "albums"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/users/show.html.erb:55
+  [1m[36mPhoto Load (0.6ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 11], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 11]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 5.9ms | Allocations: 2272)
+  [1m[36mPhoto Load (0.2ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 1], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[36mCACHE Photo Load (0.0ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 1], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 4.7ms | Allocations: 2795)
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 3], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 3]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 3.2ms | Allocations: 1968)
+  [1m[36mPhoto Load (0.3ms)[0m  [1m[34mSELECT "photos".* FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1 ORDER BY "photos"."id" ASC LIMIT $2[0m  [["album_id", 7], ["LIMIT", 1]]
+  ↳ app/views/users/_block_album_tab.html.erb:9
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "photos" INNER JOIN "albums_photos" ON "photos"."id" = "albums_photos"."photo_id" WHERE "albums_photos"."album_id" = $1[0m  [["album_id", 7]]
+  ↳ app/views/users/_block_album_tab.html.erb:23
+  Rendered users/_block_album_tab.html.erb (Duration: 3.2ms | Allocations: 1968)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "follows" ON "users"."id" = "follows"."followee_id" WHERE "follows"."follower_id" = $1[0m  [["follower_id", 1]]
+  ↳ app/views/users/show.html.erb:69
+  Rendered users/_block_follower_tab.html.erb (Duration: 0.5ms | Allocations: 228)
+  Rendered users/_block_follower_tab.html.erb (Duration: 0.1ms | Allocations: 57)
+  Rendered users/show.html.erb within layouts/application (Duration: 44.8ms | Allocations: 17056)
+[Webpacker] Everything's up-to-date. Nothing to do
+[Webpacker] Everything's up-to-date. Nothing to do
+Completed 200 OK in 64ms (Views: 53.2ms | ActiveRecord: 6.6ms | Allocations: 29537)
+
+
