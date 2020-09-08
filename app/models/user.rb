@@ -29,7 +29,7 @@ class User < ApplicationRecord
   scope :admin, -> {where(admin: true)}
 
   # send sign up mail
-  after_create :send_welcome_mail
+  after_commit :send_welcome_mail
 
   def name
     name = String.new("")
