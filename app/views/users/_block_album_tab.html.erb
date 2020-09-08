@@ -1,0 +1,31 @@
+<div class="col-sm-3 col-6 thumb album-thumb border-0">
+  <div class="thumb-container justify-content-center row">
+    <div class="images-container">
+      <% if !album.public %>
+        <div class="lock rounded-circle bg-white px-1 py-0 m-1">
+          <img src="https://img.icons8.com/android/24/000000/lock.png" height="12px" width="12px" class="absolute"/>
+        </div>
+      <% end %>
+      <% if album.photos.first.nil? or album.photos.first.image.file.nil?%>
+        <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="doggo" class="thumb-image img-fluid"/>
+        <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="doggo" class="thumb-image img-fluid"/>
+        <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="doggo" class="thumb-image img-fluid"/>
+      <% else %>
+        <%photo = album.photos.first%>
+        <%= image_tag photo.image.thumb.url, {class: "thumb-image img-fluid"} %>
+        <%= image_tag photo.image.thumb.url, {class: "thumb-image img-fluid"} %>
+        <%= image_tag photo.image.thumb.url, {class: "thumb-image img-fluid"} %>
+      <% end %>
+      <%= link_to t('.edit_content'), edit_album_path(id: album.id), {class: "btn rounded-pill btn-sm edit font-size py-0 m-1 text-white"}%>
+    </div>
+    <div class="photo-count">
+      <div class="content">
+        <div class="number"><%= album.photos.size%></div>
+        <div class="label"><%= t('.photos')%></div>
+      </div>
+    </div>
+  </div>
+  <div class="row text-center justify-content-center pt-3">
+    <p name="album title" class="font-size"><%= album.title%></p>
+  </div>
+</div>

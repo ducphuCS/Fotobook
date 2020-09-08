@@ -1,0 +1,16 @@
+<div class="col-sm-3 col-6 px-3  text-center">
+  <div class="position-relative">
+    <% if !photo.public %>
+      <div class="lock rounded-circle bg-white px-1 py-0 m-1">
+        <img src="https://img.icons8.com/android/24/000000/lock.png" height="12px" width="12px" class="absolute"/>
+      </div>
+    <% end %>
+    <% if photo.image.file.nil? %>
+      <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="doggo" class="img-fluid rounded"/>
+    <% else %>
+      <%= image_tag photo.image.thumb.url, {class: "img-fluid rounded"} %>
+    <% end %>
+    <%= link_to t('.edit_content'), edit_photo_path(id: photo.id), {class: "btn rounded-pill btn-sm edit font-size py-0 m-1 text-white"}%>
+  </div>
+  <p name="photo-tilte" class="font-size"><%= photo.title%></p>
+</div>
