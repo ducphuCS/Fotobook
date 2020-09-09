@@ -20,18 +20,17 @@
         <div class="row m-4 justify-content-between font-size">
           <% if @content_type == "photo"%>
             <% @content.each do |content|%>
-              <%= render partial: "block_photo", locals: {content: content, content_type: @content_type}%>
+              <%= render partial: "block_photo", locals: {content: content, content_type: "Photo"}%>
             <% end %>
           <% else %>
             <% @content.each do |content| %>
-              <%= render partial: "block_album", locals: {content: content, content_type: @content_type} %>
+              <%= render partial: "block_album", locals: {content: content, content_type: "Album"} %>
             <% end %>
           <% end %>
         </div>
       </div>
     </div>
-    <div class="col">
-    </div>
+    <div class="col"></div>
   </div>
 </div>
 <!-- MODAL for PHOTO-->
@@ -96,4 +95,4 @@
     $('#btn-album').removeClass("bg-white");
   </script>
 <% end %>
-<%= javascript_pack_tag 'script', 'data-turbolinks-track': 'reload' %>
+<%= javascript_pack_tag 'script'%>

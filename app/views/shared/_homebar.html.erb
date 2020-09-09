@@ -1,20 +1,24 @@
 <div class="row bg justify-content-between home-bar" name="home-bar">
   <div class="row col-sm-6 col-8 align-items-center h-100 m-0 pr-0">
     <div class="col-4 pr-0 ml-3">
-      <a class="navbar-brand float-right text-white" href="<%= discover_user_path(content: "photo", id: current_user.id) %>" ><%= t ('brand') %></a>
+        <a class="navbar-brand float-right text-white" href="<%= discover_user_path(content: "photo", id: current_user.id) %>" ><%= t ('brand') %></a>
     </div>
     <div class="col py-1 h-100 pr-0">
       <input class="col h-100 rounded border-0" type="text" name="search-bar" placeholder="Search Photo / Album"/>
     </div>
   </div>
   <nav class="navbar navbar-expand-sm row col-sm-6 col-4 m-0 p-0 justify-content-end">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#user-bar" aria-controls="user-bar" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#user-bar" aria-controls="user-bar" ria-expanded="false" aria-label="Toggle navigation">
       <a class="nav-toggle-icon btn rounded-circle bg-white text-color border-0 px-2"><%= current_user.avatar_name%></a>
     </button>
     <div class="collapse navbar-collapse" id="user-bar" style="z-index: 100">
       <div class="navbar-nav col-12 justify-content-end align-items-center bg">
         <div class="col-auto row navbar-nav">
-          <a href="<%= user_path(current_user.id)%>" class="nav-item nav-link btn rounded-circle bg-white text-color border-0 px-2"><%= current_user.avatar_name%></a>
+          <% if current_user.avatar.file.nil? %>
+            <a href="<%= user_path(current_user.id)%>" class="nav-item nav-link btn rounded-circle bg-white text-color border-0 px-2"><%= current_user.avatar_name%></a>
+          <% else %>
+            <%= image_tag current_user.avatar.thumb.url, {class: "nav-item nav-link btn rounded-circle img-fluid p-0", style: "height:40px"} %>
+          <% end %>
           <a href="<%= user_path(current_user.id)%>" class="nav-item nav-link btn text-white border-0"><%= current_user.name%></a>
         </div>
         <div class="col-3 navbar-nav">

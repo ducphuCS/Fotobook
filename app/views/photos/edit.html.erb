@@ -20,13 +20,8 @@
                 <%= f.text_field :title, {placeholder: "Photo Title", class: "form-control col-11"}%>
               </div>
               <div class="form-group-vertical my-4">
-                <%= f.label :sharing, t('.public_mode')%><br>
-                <%= select_tag(:sharing,
-                  options_for_select([
-                  [t('.public'), "public"],
-                  [t('.private'), "private"]
-                  ], "public"),
-                  {class: "col-5 custom-select"})%>
+                <%= f.label :public, t('.public_mode')%><br>
+                <%= f.select :public, options_for_select([[t('.public'), true],[t('.private'), false]], true), {class: "col-5 custom-select"}%>
               </div>
             </div>
             <div class="col-12 col-sm px-4">

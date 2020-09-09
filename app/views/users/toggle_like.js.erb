@@ -1,0 +1,12 @@
+var like = $("a[name='like_<%=id%>']")
+var icon = like.children("div").children("svg")
+var span = like.children("div").children("span")
+var fill_color = icon.attr("fill");
+if (fill_color == "rgb(60, 90, 154)"){
+  $(icon).attr("fill","lightgrey");
+  span.text(parseInt(span.text()) - 1);
+}
+else {
+  $(icon).attr("fill", "rgb(60, 90, 154)");
+  span.text(parseInt(span.text()) + 1);
+}

@@ -1,0 +1,13 @@
+var button = $("a[name='follow_<%=id%>'")
+console.log(button);
+console.log("follow_<%=id%>")
+if ($(button).hasClass("followed")) {
+  button.removeClass("followed")
+  button.addClass("follow")
+  button.html("follow")
+}
+else {
+  button.removeClass("follow")
+  button.addClass("followed")
+  button.html("following")
+}

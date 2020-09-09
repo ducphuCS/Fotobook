@@ -6,7 +6,11 @@
       <div class="bg-white col">
         <div class="col row py-5 px-4" name="profile-header">
           <div class="col-sm-3 col-12">
-            <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="avatar" class="img-fluid rounded-circle" style="width:100%" />
+            <% if @user.avatar.file.nil?%>
+              <h1 class="rounded-circle bg text-white row align-items-center justify-content-center mx-3" style="height:100%"><%= @user.avatar_name%></h1>
+            <% else %>
+              <%= image_tag @user.avatar.thumb.url, {class: "img-fluid rounded-circle"}%>
+            <% end %>
           </div>
           <div class="col-sm-9 col-12">
             <div class="row mb-3">
