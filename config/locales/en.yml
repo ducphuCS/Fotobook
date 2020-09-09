@@ -38,6 +38,10 @@ en:
       title: "Fotobook"
       photo: "PHOTO"
       album: "ALBUM"
+    feed:
+      title: "Fotobook"
+      photo: "PHOTO"
+      album: "ALBUM"
     show:
       edit: "Edit Profile"
       photos_tab: " PHOTOS"
