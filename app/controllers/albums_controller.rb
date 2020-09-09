@@ -1,7 +1,17 @@
 class AlbumsController < ApplicationController
-
   def new
-    
+    @album = Album.new
+    @user = User.find(get_user_id)
+  end
+  def create
+    @album = Album.new(photo_params)
+    @album.user_id = get_user_id
+    if @album.save
+      redirect_to new_user_album_path(user_id: get_user_id)
+    else
+      @user = User.find(get_user_id)
+      render "new"
+    end
   end
   def edit
     @album = Album.find(params[:id])
@@ -27,5 +37,8 @@ class AlbumsController < ApplicationController
   private
   def albums_title
     params.require(:album).permit(:title)[:title]
+  end
+  def get_user_id
+    params.require(:user_id)
   end
 end
