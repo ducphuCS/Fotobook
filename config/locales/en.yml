@@ -67,6 +67,15 @@ en:
   time:
     formats:
       last_update: "%l:%M %P %d/%m/%Y"
+  albums:
+    new:
+      header: "New Album"
+      title: "Title"
+      public_mode: "Sharing mode"
+      public: "Public"
+      private: "Private"
+      description: "Description"
+      save: "Save"
   photos:
     new:
       header: "New Photo"
