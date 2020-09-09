@@ -1,21 +1,31 @@
 <div class="col-sm-3 col-6 row bg-grey shadow rounded justify-content-center mx-2 my-1">
   <div class="row mt-3 justify-content-center">
-    <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="avatar" class="col-8 img-fluid rounded-circle"/>
+    <% if rendered_user.avatar.file.nil? %>
+      <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="avatar" class="col-8 img-fluid rounded-circle"/>
+    <% else %>
+      <%= image_tag rendered_user.image.thumb.url, {class: "col-8 img-fluid rounded-circle"} %>
+    <% end %>
   </div>
   <div class="my-1 justify-content-center row col-12">
-    <p class="font-weight-bold mb-0"><%= followee.name%></p>
+    <%= link_to rendered_user.name, user_path(rendered_user.id), {class: "font-weight-bold mb-0 text-decoration-none"}%>
   </div>
   <div class="row justify-content-center col-12">
     <div class="col">
-      <div class="row justify-content-center text-color font-weight-bold font-size-lg"><%= followee.photo_count%></div>
+      <div class="row justify-content-center text-color font-weight-bold font-size-lg"><%= rendered_user.photo_count%></div>
       <div class="row justify-content-center text-color font-size"><%= t('.photos')%></div>
     </div>
     <div class="col">
-      <div class="row justify-content-center text-color font-weight-bold font-size-lg"><%= followee.album_count%></div>
+      <div class="row justify-content-center text-color font-weight-bold font-size-lg"><%= rendered_user.album_count%></div>
       <div class="row justify-content-center text-color font-size"><%= t('.albums')%></div>
     </div>
   </div>
   <div class="row col justify-content-center mt-2 mb-3">
-    <button type="button" name="follow" class="btn follow rounded-pill py-0">follow</button>
+    <% if current_user.id.to_i != rendered_user.id.to_i%>
+      <% if followed(current_user.id, rendered_user.id)%>
+        <%= link_to "following", toggle_follow_user_path(follower_id: current_user.id, followee_id: rendered_user.id), {remote: true, name:"follow_#{rendered_user.id}", class:"btn followed rounded-pill py-0"}%>
+      <% else %>
+        <%= link_to "follow", toggle_follow_user_path(follower_id: current_user.id, followee_id: rendered_user.id), {remote: true, name:"follow_#{rendered_user.id}", class: "btn follow rounded-pill py-0"}%>
+      <% end %>
+    <% end %>
   </div>
 </div>

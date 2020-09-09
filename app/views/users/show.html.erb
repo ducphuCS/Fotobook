@@ -9,12 +9,18 @@
             <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="avatar" class="img-fluid rounded-circle" style="width:100%" />
           </div>
           <div class="col-sm-9 col-12">
-            <div class="row" style="height:40px;">
+            <div class="row mb-3">
               <% if (current_user.id.to_i == params.require(:id).to_i )%>
                 <%= link_to t('.edit'), edit_user_registration_path, {class: "btn profile rounded-pill btn-sm font-weight-bold", style: "height:30px"}%>
+              <% else %>
+                <% if followed(current_user.id, @user.id)%>
+                  <%= link_to "following", toggle_follow_user_path(follower_id: current_user.id, followee_id: @user.id), {remote: true, name:"follow_#{@user.id}", class: "btn followed rounded-pill py-0" }%>
+                <% else %>
+                  <%= link_to "follow", toggle_follow_user_path(follower_id: current_user.id, followee_id: @user.id), {remote: true, name:"follow_#{@user.id}", class: "btn follow rounded-pill py-0"}%>
+                <% end %>
               <% end %>
             </div>
-            <div class="row mt-1">
+            <div class="row">
               <h1 name="user-name" class="font-weight-bold"><%= @user.name%></h1>
             </div>
             <div class="row pl-0" >
@@ -25,19 +31,21 @@
                 <span name="num-albums" class="font-size-lg"><%= @user.album_count%></span><%= t('.albums_tab')%>
               </div>
               <div class="col-auto border-right text-secondary tab" name="followings">
-                <span name="num-follwings" class="font-size-lg"><%= @user.followers.size %></span><%= t('.followings_tab')%>
+                <span name="num-follwings" class="font-size-lg"><%= @user.followees.size %></span><%= t('.followings_tab')%>
               </div>
               <div class="col-auto text-secondary tab" name="followers">
-                <span name="num-followers" class="font-size-lg"><%= @user.followees.size %></span><%= t('.followers_tab')%>
+                <span name="num-followers" class="font-size-lg"><%= @user.followers.size %></span><%= t('.followers_tab')%>
               </div>
             </div>
           </div>
         </div>
         <div class="" name="photos-tab">
           <div class="row mx-3 mb-4">
-            <div class="col-12 mt-2">
-              <%= link_to t('.add_photo'), new_user_photo_path(user_id: current_user.id), {class: "float-right btn rounded-pill add py-1"}%>
-            </div>
+            <% if (current_user.id.to_i == params.require(:id).to_i )%>
+              <div class="col-12 mt-2">
+                <%= link_to t('.add_photo'), new_user_photo_path(user_id: current_user.id), {class: "float-right btn rounded-pill add py-1"}%>
+              </div>
+            <% end %>
           </div>
           <div class="row mx-3 my-1">
             <% @user.photos.each do |photo| %>
@@ -47,9 +55,11 @@
         </div>
         <div class="d-none" name="albums-tab">
           <div class="row mx-3 mb-4">
-            <div class="col-12">
-              <%= link_to t('.add_album'), new_user_album_path(user_id: current_user.id), {class: "float-right btn rounded-pill add py-1"}%>
-            </div>
+            <% if (current_user.id.to_i == params.require(:id).to_i )%>
+              <div class="col-12">
+                <%= link_to t('.add_album'), new_user_album_path(user_id: current_user.id), {class: "float-right btn rounded-pill add py-1"}%>
+              </div>
+            <% end %>
           </div>
           <div class="row my-1">
             <% @user.albums.each do |album| %>
@@ -59,22 +69,21 @@
         </div>
         <div class="d-none" name="followings-tab">
           <div class="row mx-3 my-1">
-            <% @user.followers.each do |follower| %>
-              <%= render partial: "block_following_tab", locals: {follower: follower} %>
+            <% @user.followees.each do |followee| %>
+              <%= render partial: "block_following_tab", locals: {rendered_user: followee} %>
             <% end %>
           </div>
         </div>
         <div class="d-none" name="followers-tab">
           <div class="row mx-3 my-1">
-            <% @user.followees.each do |followee| %>
-              <%= render partial: "block_follower_tab", locals: {followee: followee} %>
+            <% @user.followers.each do |follower| %>
+              <%= render partial: "block_follower_tab", locals: {rendered_user: follower} %>
             <% end %>
           </div>
         </div>
       </div>
     </div>
-    <div class="col">
-
-    </div>
+    <div class="col"></div>
   </div>
 </div>
+<%= javascript_pack_tag 'script', 'data-turbolinks-track': 'reload' %>

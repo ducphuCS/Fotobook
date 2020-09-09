@@ -10,7 +10,9 @@
     <% else %>
       <%= image_tag photo.image.thumb.url, {class: "img-fluid rounded"} %>
     <% end %>
-    <%= link_to t('.edit_content'), edit_photo_path(id: photo.id), {class: "btn rounded-pill btn-sm edit font-size py-0 m-1 text-white"}%>
+    <% if (current_user.id.to_i == params.require(:id).to_i )%>
+      <%= link_to t('.edit_content'), edit_photo_path(id: photo.id), {class: "btn rounded-pill btn-sm edit font-size py-0 m-1 text-white"}%>
+    <% end %>
   </div>
   <p name="photo-tilte" class="font-size"><%= photo.title%></p>
 </div>

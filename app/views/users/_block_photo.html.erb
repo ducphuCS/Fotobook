@@ -6,16 +6,22 @@
       <%= image_tag content.image.thumb.url, {class: "img-fluid img-thumbnail", style: "width: 100%"} %>
     <% end %>
   </div>
-  <div class="col-sm-6 col-12 row mr-0 pr-0">
-    <div class="row align-items-center col-12 mr-0 pr-0 justify-content-between" name="info-part">
+  <div class="col-sm-6 col-12 row pr-0">
+    <div class="row align-items-center col-12 pr-0 justify-content-between" name="info-part">
       <div class="col-auto row">
         <div class="row col-auto">
           <button class="rounded-circle chosen border-0"><%= content.user.avatar_name%></button>
-          <a href="<%= user_path(content.user.id)%>" class="btn font-size pl-1 "><%= content.user.name%></a>
+          <a href="<%= user_path(content.user.id)%>" class="btn font-size pl-1 pr-0"><%= content.user.name%></a>
         </div>
       </div>
       <div class="col-auto p-0 m-0 float-right">
-        <button type="button" name="follow" class="btn follow py-0 btn-sm font-size-sm">follow</button>
+        <% if current_user.id.to_i != content.user.id.to_i%>
+          <% if followed(current_user.id, content.user.id)%>
+            <%= link_to "following", toggle_follow_user_path(follower_id: current_user.id, followee_id: content.user.id), {remote: true, name:"follow_#{content.user.id}", class:"btn followed py-0 px-1 btn-sm rounded-pill font-size-sm"}%>
+          <% else %>
+            <%= link_to "follow", toggle_follow_user_path(follower_id: current_user.id, followee_id: content.user.id), {remote: true, name:"follow_#{content.user.id}", class: "btn follow py-0 px-1 btn-sm rounded-pill font-size-sm"}%>
+          <% end %>
+        <% end %>
       </div>
     </div>
     <div class="row font-weight-bold col-12" name="title-post"><%= content.title %> </div>

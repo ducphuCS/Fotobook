@@ -1,30 +1,5 @@
 <div class="container-fluid font">
-  <div class="row bg justify-content-between home-bar" name="home-bar">
-    <div class="row col-sm-6 col-8 align-items-center h-100 m-0 pr-0">
-      <div class="col-4 pr-0 ml-3">
-        <a class="navbar-brand float-right text-white" href="<%= discover_user_path(content: "photo", id: current_user.id) %>" ><%= t ('brand') %></a>
-      </div>
-      <div class="col py-1 h-100 pr-0">
-        <input class="col h-100 rounded border-0" type="text" name="search-bar" placeholder="Search Photo / Album"/>
-      </div>
-    </div>
-    <nav class="navbar navbar-expand-sm row col-sm-6 col-4 m-0 p-0 justify-content-end">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#user-bar" aria-controls="user-bar" aria-expanded="false" aria-label="Toggle navigation">
-        <a class="nav-toggle-icon btn rounded-circle bg-white text-color border-0 px-2"><%= @user.avatar_name%></a>
-      </button>
-      <div class="collapse navbar-collapse" id="user-bar" style="z-index: 100">
-        <div class="navbar-nav col-12 justify-content-end align-items-center bg">
-          <div class="col-auto row navbar-nav">
-            <a href="<%= user_path(current_user.id)%>" class="nav-item nav-link btn rounded-circle bg-white text-color border-0 px-2"><%= @user.avatar_name%></a>
-            <a href="<%= user_path(current_user.id)%>" class="nav-item nav-link btn text-white border-0"><%= @user.name%></a>
-          </div>
-          <div class="col-3 navbar-nav">
-            <%= link_to t('logout'), destroy_user_session_path, {class: "nav-item nav-link btn text-white border-0", method: "delete"}%>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </div>
+  <%= render "shared/homebar"%>
   <div class="row bg-grey">
     <div class="col pt-4 align-items-center">
       <div class="row col ml-2">
@@ -45,18 +20,13 @@
         <div class="row m-4 justify-content-between font-size">
           <% if @content_type == "photo"%>
             <% @content.each do |content|%>
-              <%= render partial: "block_photo", locals: {content: content, user: @user}%>
+              <%= render partial: "block_photo", locals: {content: content, content_type: @content_type}%>
             <% end %>
           <% else %>
             <% @content.each do |content| %>
-              <%= render partial: "block_album", locals: {content: content, user: @user} %>
+              <%= render partial: "block_album", locals: {content: content, content_type: @content_type} %>
             <% end %>
           <% end %>
-        </div>
-        <div class="row bg-white mt-5 justify-content-center " style="height:50px">
-          <div class="spinner-border text-secondary" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>
         </div>
       </div>
     </div>
@@ -126,3 +96,4 @@
     $('#btn-album').removeClass("bg-white");
   </script>
 <% end %>
+<%= javascript_pack_tag 'script', 'data-turbolinks-track': 'reload' %>
