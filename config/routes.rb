@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     member do
       get 'feed', to: "users#feed"
       get 'discover', to: "users#discover"
+      get 'toggle_follow', to: "users#toggle_follow"
     end
     resources :photos, shallow: true, except: :show
     resources :albums, shallow: true
