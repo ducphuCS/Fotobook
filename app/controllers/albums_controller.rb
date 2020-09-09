@@ -1,6 +1,9 @@
 class AlbumsController < ApplicationController
+
+  def new
+    
+  end
   def edit
-    # render "edit"
     @album = Album.find(params[:id])
   end
   def update

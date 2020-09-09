@@ -2,17 +2,16 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     puts "User create action"
-
-    if @user.save
-      UserMailer.welcome_mail(@user).deliver_now
-    end
   end
+
   def show
     @user = User.find(get_user_id)
   end
+
   def feed
 
   end
+
   def discover
     @content_type = get_content
     @user = User.find(get_user_id)
@@ -23,7 +22,54 @@ class UsersController < ApplicationController
     end
   end
 
+  def toggle_follow
+    follower_id = get_follower_id
+    followee_id = get_followee_id
+    follow = Follow.where(follower_id: follower_id, followee_id: followee_id)
+    if follow.blank?
+      Follow.create(follower_id: follower_id, followee_id: followee_id)
+    else
+      Follow.destroy_by(follower_id: follower_id, followee_id: followee_id)
+    end
+    render "toggle_follow", locals: {id: followee_id}
+  end
+
+  def toggle_like
+    user_id = current_user.id
+    content_id = get_content_id
+    content_type = get_content_type
+    like = Like.where(user_id: user_id, content_id: content_id, content_type: content_type)
+    if like.blank?
+      Like.create(user_id: user_id, content_id: content_id, content_type: content_type)
+    else
+      Like.destroy_by(user_id: user_id, content_id: content_id, content_type: content_type)
+    end
+    render "toggle_like", locals: {content_id: content_id}
+  end
+
+  def liked(content_id)
+
+  end
+  def followed(follower_id, followee_id)
+    !Follow.where(follower_id: follower_id, followee_id: followee_id).blank?
+  end
+  helper_method :followed, :liked
+
+
+
   private
+  def get_content_type
+    params.require(:content_type)
+  end
+  def get_content_id
+    params.require(:content_id)
+  end
+  def get_follower_id
+    params.require(:follower_id)
+  end
+  def get_followee_id
+    params.require(:followee_id)
+  end
   def get_content
     if params[:content].present?
       params.require(:content)
