@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :followee_relationships, class_name: "Follow", foreign_key: :follower_id
   has_many :followees, through: :followee_relationships, source: :followee, dependent: :destroy  #@user.followees is list of users that this user follow
 
+  mount_uploader :avatar, PhotoUploader
 
   validates :firstname, uniqueness: {scope: :lastname}
   validates_each :firstname, :lastname do |record, attr, value|
@@ -56,13 +57,7 @@ class User < ApplicationRecord
   private
   def send_welcome_mail
     puts "after_save User"
-    # UserMailer.with(user: self).welcome_mail.deliver_now
     SignUpMailerJob.perform_now self
   end
-  # before_create :set_default_value_for_last_login
-  # def set_default_value_for_last_login
-  #   self.last_login = self.created_or_update
-  # end
-
 
 end
