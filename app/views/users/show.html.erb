@@ -53,7 +53,9 @@
           </div>
           <div class="row mx-3 my-1">
             <% @user.photos.each do |photo| %>
-              <%= render partial: "block_photo_tab", locals: {photo: photo}%>
+              <% if current_user.id.to_i == params.require(:id).to_i or photo.public%>
+                <%= render partial: "block_photo_tab", locals: {photo: photo}%>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -67,7 +69,9 @@
           </div>
           <div class="row my-1">
             <% @user.albums.each do |album| %>
-              <%= render partial: "block_album_tab", locals: {album: album}%>
+              <% if current_user.id.to_i == params.require(:id).to_i or album.public%>
+                <%= render partial: "block_album_tab", locals: {album: album}%>
+              <% end %>
             <% end %>
           </div>
         </div>
