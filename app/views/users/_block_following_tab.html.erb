@@ -3,7 +3,7 @@
     <% if rendered_user.avatar.file.nil? %>
       <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="avatar" class="col-8 img-fluid rounded-circle"/>
     <% else %>
-      <%= image_tag rendered_user.image.thumb.url, {class: "col-8 img-fluid rounded-circle"} %>
+      <%= image_tag rendered_user.avatar.thumb.url, {class: "col-8 img-fluid rounded-circle"} %>
     <% end %>
   </div>
   <div class="my-1 justify-content-center row col-12">

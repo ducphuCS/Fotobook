@@ -1,0 +1,102 @@
+<div class="container-fluid font">
+  <%= render "shared/homebar"%>
+  <div class="row bg-grey">
+    <div class="col pt-4 align-items-center">
+      <div class="row col ml-2">
+        <%= link_to I18n.t('feed'), feed_user_path(current_user.id), {class: "btn text-color"}%>
+      </div>
+      <div class="row col ml-2">
+        <%= link_to I18n.t('discover'), discover_user_path(content: "photo", id: current_user.id), {class: "btn text-secondary"}%>
+      </div>
+    </div>
+    <div class="col-sm-9 col-12 p-3">
+      <div class="col bg-white">
+        <div class="row justify-content-center">
+          <div class="row m-3 btn-group">
+            <%= link_to t('.photo'), feed_user_path(content: "photo", id: current_user.id), {class: "btn rounded-left border chosen", id: "btn-photo"}%>
+            <%= link_to t('.album'), feed_user_path(content: "album", id: current_user.id), {class: "btn rounded-left border bg-white", id: "btn-album"}%>
+          </div>
+        </div>
+        <div class="row m-4 justify-content-between font-size">
+          <% if @content_type == "photo"%>
+            <% @content.each do |content|%>
+              <% if belongs_to_followings(content.user_id)%>
+                <%= render partial: "block_feed_photo", locals: {content: content, content_type: "Photo"}%>
+              <% end %>
+            <% end %>
+          <% else %>
+            <% @content.each do |content| %>
+              <% if !belongs_to_followings(content.user_id)%>
+                <%= render partial: "block_feed_album", locals: {content: content, content_type: "Album"} %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+<!-- MODAL for PHOTO-->
+<div id="modal-photo" class="modal" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content ">
+      <div class="modal-header border-0">
+        <p class="modal-title font-weight-bold" id="modal-photo-title"></p>
+        <button type="button" class="photo-modal-close close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body my-n1 py-0">
+        <img src="" class="img" id="modal-photo-body" style="width:100%"/>
+        <p id="modal-photo-description" style="font-size:10px" class="pt-2"></p>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- MODAL for ALBUM -->
+  <div id="modal-album" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <p class="modal-title font-weight-bold" id="modal-album-title"></p>
+          <button type="button" class="album-modal-close close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body my-n1 py-0">
+          <div id="carousel-modal" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="https://scontent.fsgn2-5.fna.fbcdn.net/v/t1.0-9/73533037_2872716039517975_2752281886001856581_o.jpg?_nc_cat=102&_nc_sid=0debeb&_nc_ohc=HltND1mRfboAX-sU2S8&_nc_ht=scontent.fsgn2-5.fna&oh=eeac0fa715bbcf1c379c6587c1a59446&oe=5F72E845" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t1.0-9/104590860_2837405519715694_3069445686140223906_o.png?_nc_cat=100&_nc_sid=174925&_nc_ohc=lRcMvR3vHkAAX_GMKDE&_nc_ht=scontent.fsgn2-6.fna&oh=adddbeb0296fc862f1ee47fee539c3c0&oe=5F7298E2" class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <a class="carousel-control-prev" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+          <p id="modal-album-description" style="font-size:10px" class="pt-2"></p>
+        </div>
+      </div>
+  </div>
+</div>
+<% if @content_type == "album"%>
+  <script>
+    $("#btn-photo").addClass("bg-white");
+    $("#btn-photo").removeClass("chosen");
+    $('#btn-album').addClass("chosen");
+    $('#btn-album').removeClass("bg-white");
+  </script>
+<% end %>
+<%= javascript_pack_tag 'script'%>
