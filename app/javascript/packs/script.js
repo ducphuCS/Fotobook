@@ -21,20 +21,6 @@ $(document).ready(function() {
       }
     }
   })
-  $(".love").on({
-    "click": function() {
-      var icon = $(this).children("svg");
-      var fill_color = icon.attr("fill");
-      if (fill_color == "rgb(60, 90, 154)"){
-        $(icon).attr("fill","lightgrey");
-        $(this).children("span").text(parseInt($(this).children("span").text()) - 1);
-      }
-      else {
-        $(icon).attr("fill", "rgb(60, 90, 154)");
-        $(this).children("span").text(parseInt($(this).children("span").text()) + 1);
-      }
-    }
-  })
   $("img").on({
     "click": function() {
       var title = $(this).parent().parent().find("div[name='title-post']").html();
