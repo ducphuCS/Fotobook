@@ -49,7 +49,6 @@ $(document).ready(function() {
       else {
         $("#modal-album-title").html(title)
         $("#modal-album-description").html(description)
-        // this is for source of picture in album
         $("#modal-album").modal('toggle')
       }
     }
@@ -94,21 +93,6 @@ $(document).ready(function() {
       }
     }
   })
-  $("button[name='follow']").on({
-    "click": function() {
-      console.log("follow button clicked");
-      if ($(this).hasClass("followed")) {
-        $(this).removeClass("followed")
-        $(this).addClass("follow")
-        $(this).html("follow")
-      }
-      else {
-        $(this).removeClass("follow")
-        $(this).addClass("followed")
-        $(this).html("following")
-      }
-    }
-  })
   $(".tab").on({
     "click": function() {
       var others = $(".tab").not(this);
@@ -117,7 +101,6 @@ $(document).ready(function() {
       $(this).addClass("text-color");
       var tabName = $(this).attr("name") + "-tab"
       $("div[name="+tabName+"]").removeClass("d-none")
-      // $("div[name=tabName]").addClass("d-block")
       others.map(function() {
         $(this).removeClass("text-color");
         $(this).addClass("text-secondary");
