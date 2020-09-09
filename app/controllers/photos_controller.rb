@@ -21,6 +21,7 @@ class PhotosController < ApplicationController
   def update
     @photo = Photo.find(get_photo_id)
     @photo.update_attributes(photo_params)
+    redirect_to user_path(id: @photo.user_id)
   end
   def destroy
     Photo.destroy(get_photo_id)
@@ -31,7 +32,7 @@ class PhotosController < ApplicationController
     params.require(:user_id)
   end
   def photo_params
-    params.require(:photo).permit(:title, :description, :sharing, :image)
+    params.require(:photo).permit(:title, :description, :public, :image)
   end
   def get_photo_id
     params.require(:id)

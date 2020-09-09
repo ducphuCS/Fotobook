@@ -1,9 +1,4 @@
 class UsersController < ApplicationController
-  def create
-    @user = User.new(params[:user])
-    puts "User create action"
-  end
-
   def show
     @user = User.find(get_user_id)
   end
@@ -14,7 +9,6 @@ class UsersController < ApplicationController
 
   def discover
     @content_type = get_content
-    @user = User.find(get_user_id)
     if @content_type == "photo"
       @content = Photo.includes(:user).order(updated_at: :desc)
     else
@@ -44,11 +38,12 @@ class UsersController < ApplicationController
     else
       Like.destroy_by(user_id: user_id, content_id: content_id, content_type: content_type)
     end
-    render "toggle_like", locals: {content_id: content_id}
+    render "toggle_like", locals: {id: content_id}
   end
 
-  def liked(content_id)
 
+  def liked(content_id, content_type)
+    !Like.where(content_id: content_id, user_id: current_user.id, content_type: content_type).blank?
   end
   def followed(follower_id, followee_id)
     !Follow.where(follower_id: follower_id, followee_id: followee_id).blank?
