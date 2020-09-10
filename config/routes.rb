@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :photos, :albums, only: [:new, :create]
   end
 
+  resources :photos, :albums, only: [:edit, :update, :delete]
+
   namespace :admin do
     resources :albums, except: [:new, :create, :show]
     resources :photos, except: [:new, :create, :show]
