@@ -20,15 +20,11 @@
         <div class="row m-4 justify-content-between font-size">
           <% if @content_type == "photo"%>
             <% @content.each do |content|%>
-              <% if belongs_to_followings(content.user_id) and content.public%>
-                <%= render partial: "block_feed_photo", locals: {content: content, content_type: "Photo"}%>
-              <% end %>
+              <%= render partial: "block_feed_photo", locals: {content: content, content_type: "Photo"}%>
             <% end %>
           <% else %>
             <% @content.each do |content| %>
-              <% if belongs_to_followings(content.user_id) and content.public%>
-                <%= render partial: "block_feed_album", locals: {content: content, content_type: "Album"} %>
-              <% end %>
+              <%= render partial: "block_feed_album", locals: {content: content, content_type: "Album"} %>
             <% end %>
           <% end %>
         </div>

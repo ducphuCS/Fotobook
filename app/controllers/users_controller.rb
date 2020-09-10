@@ -7,9 +7,9 @@ class UsersController < ApplicationController
   def feed
     @content_type = get_content
     if @content_type == "photo"
-      @content = Photo.includes(:user).order(updated_at: :desc)
+      @content = Photo.where(user_id: current_user.followees.ids << current_user.id).includes(:user).order(updated_at: :desc)
     else
-      @content = Album.includes(:user, :photos).order(updated_at: :desc)
+      @content = Album.where(user_id: current_user.followees.ids << current_user.id).includes(:user).order(updated_at: :desc)
     end
   end
 
@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     if @content_type == "photo"
       @content = Photo.includes(:user).order(updated_at: :desc)
     else
-      @content = Album.includes(:user, :photos).order(updated_at: :desc)
+      @content = Album.includes(:user).order(updated_at: :desc)
     end
   end
 
@@ -48,9 +48,6 @@ class UsersController < ApplicationController
   end
 
 
-  def belongs_to_followings(user_id)
-    !Follow.where(follower_id: current_user.id, followee_id: user_id).blank?
-  end
 
   def liked(content_id, content_type)
     !Like.where(content_id: content_id, user_id: current_user.id, content_type: content_type).blank?
@@ -97,5 +94,5 @@ class UsersController < ApplicationController
       current_user.id
     end
   end
-  
+
 end

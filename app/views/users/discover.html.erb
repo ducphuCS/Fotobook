@@ -20,13 +20,13 @@
         <div class="row m-4 justify-content-between font-size">
           <% if @content_type == "photo"%>
             <% @content.each do |content|%>
-              <% if content.public%>
+              <% if content.public or content.user_id.to_i == current_user.id.to_i%>
                 <%= render partial: "block_photo", locals: {content: content, content_type: "Photo"}%>
               <% end %>
             <% end %>
           <% else %>
             <% @content.each do |content| %>
-              <% if content.public%>
+              <% if content.public or content.user_id.to_i == current_user.id.to_i%>
                 <%= render partial: "block_album", locals: {content: content, content_type: "Album"} %>
               <% end %>
             <% end %>
