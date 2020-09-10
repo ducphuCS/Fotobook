@@ -30,7 +30,7 @@
   </div>
   <div class="row justify-content-center mt-4">
     <div class="col-sm-4 col-8 row justify-content-center shadow border rounded bg-grey mb-5">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "mt-5 col"} )  do |f| %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "mt-5 col", id: "signup_form"} )  do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="field form-group mx-3" style="font-size: 16px">
@@ -68,4 +68,3 @@
     </div>
   </div>
 </div>
-<%= javascript_pack_tag 'signup_validation.js'%>
