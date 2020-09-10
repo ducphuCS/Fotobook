@@ -41,6 +41,8 @@ node_modules
 yarn-debug.log*
 .yarn-integrity
 
+log/
+tmp/
 
 app/assets/stylesheets/albums.scss
 app/assets/stylesheets/home.scss
