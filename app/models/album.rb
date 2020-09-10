@@ -1,14 +1,9 @@
 class Album < ApplicationRecord
   validates :title, presence: true, length: {minimum: 10, message: "Album title should has more than 10 letters"}
-  belongs_to :user, optional: true, counter_cache: :album_count
-  has_and_belongs_to_many :photos
+  belongs_to :user, counter_cache: :album_count
   has_many :likes, as: :content
-
-  scope :sharing_mode, ->(public) {
-    where(public: public)
-  }
-
-  before_save :ensure_description_has_a_value, :likes_count_not_nil
+  has_many :photos, dependent: :destroy
+  before_save :ensure_description_has_a_value
 
 
   private
@@ -19,10 +14,4 @@ class Album < ApplicationRecord
     end
   end
 
-  def likes_count_not_nil
-    if self.likes_count.nil?
-      self.likes_count = 0
-    end
-  end
-  
 end

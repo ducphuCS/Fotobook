@@ -7,18 +7,18 @@ class UsersController < ApplicationController
   def feed
     @content_type = get_content
     if @content_type == "photo"
-      @content = Photo.where(user_id: current_user.followees.ids << current_user.id).includes(:user).order(updated_at: :desc)
+      @content = Photo.where(user_id: current_user.followees.ids, public: true).or(Photo.where(user_id: current_user.id)).includes(:user).order(updated_at: :desc)
     else
-      @content = Album.where(user_id: current_user.followees.ids << current_user.id).includes(:user).order(updated_at: :desc)
+      @content = Album.where(user_id: current_user.followees.ids, public: true).or(Album.where(user_id: current_user.id)).includes(:user).order(updated_at: :desc)
     end
   end
 
   def discover
     @content_type = get_content
     if @content_type == "photo"
-      @content = Photo.includes(:user).order(updated_at: :desc)
+      @content = Photo.where(public: true).or(Photo.where(user_id: current_user.id)).includes(:user).order(updated_at: :desc)
     else
-      @content = Album.includes(:user).order(updated_at: :desc)
+      @content = Album.where(public: true).or(Album.where(user_id: current_user.id)).includes(:user).order(updated_at: :desc)
     end
   end
 
