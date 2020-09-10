@@ -33,6 +33,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+/public/uploads
 /public/packs
 /public/packs-test
 /node_modules
@@ -40,3 +41,8 @@
 yarn-debug.log*
 .yarn-integrity
 /tmp/
+
+/app/assets/stylesheets/albums.scss
+/app/assets/stylesheets/home.scss
+/app/assets/stylesheets/photos.scss
+/app/assets/stylesheets/users.scss
