@@ -21,9 +21,9 @@
       <div class="col-auto p-0 m-0 float-right">
         <% if current_user.id.to_i != content.user.id.to_i%>
           <% if followed(current_user.id, content.user.id)%>
-            <%= link_to "following", toggle_follow_user_path(follower_id: current_user.id, followee_id: content.user.id, id: current_user.id), {remote: true, name:"follow_#{content.user.id}", class:"btn followed py-0 px-1 btn-sm rounded-pill font-size-sm"}%>
+            <%= link_to "following", toggle_follow_path(follower_id: current_user.id, followee_id: content.user.id), {remote: true, name:"follow_#{content.user.id}", class:"btn followed py-0 px-1 btn-sm rounded-pill font-size-sm"}%>
           <% else %>
-            <%= link_to "follow", toggle_follow_user_path(follower_id: current_user.id, followee_id: content.user.id, id: current_user.id), {remote: true, name:"follow_#{content.user.id}", class: "btn follow py-0 px-1 btn-sm rounded-pill font-size-sm"}%>
+            <%= link_to "follow", toggle_follow_path(follower_id: current_user.id, followee_id: content.user.id), {remote: true, name:"follow_#{content.user.id}", class: "btn follow py-0 px-1 btn-sm rounded-pill font-size-sm"}%>
           <% end %>
         <% end %>
       </div>
@@ -31,7 +31,7 @@
     <div class="row font-weight-bold col-12" name="title-post"><%= content.title %> </div>
     <div class="row col-12" name="description-post"><%= content.description %></div>
     <div class="row justify-content-between align-items-end col-12 mr-0 pr-0">
-      <%= link_to toggle_like_user_path(content_id: content.id, content_type: content_type, id: current_user.id), {name: "like_#{content.id}", remote: true} do %>
+      <%= link_to toggle_like_path(content_id: content.id, content_type: content_type), {name: "like_#{content.id}", remote: true} do %>
         <div class="col text-color font-size">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="12" height="12"
           fill="<% if liked(content.id, content_type) %>rgb(60, 90, 154)<% else %>lightgrey<% end %>">

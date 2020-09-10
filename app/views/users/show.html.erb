@@ -18,9 +18,9 @@
                 <%= link_to t('.edit'), edit_user_registration_path, {class: "btn profile rounded-pill btn-sm font-weight-bold", style: "height:30px"}%>
               <% else %>
                 <% if followed(current_user.id, @user.id)%>
-                  <%= link_to "following", toggle_follow_user_path(follower_id: current_user.id, followee_id: @user.id), {remote: true, name:"follow_#{@user.id}", class: "btn followed rounded-pill py-0" }%>
+                  <%= link_to "following", toggle_follow_path(follower_id: current_user.id, followee_id: @user.id), {remote: true, name:"follow_#{@user.id}", class: "btn followed rounded-pill py-0" }%>
                 <% else %>
-                  <%= link_to "follow", toggle_follow_user_path(follower_id: current_user.id, followee_id: @user.id), {remote: true, name:"follow_#{@user.id}", class: "btn follow rounded-pill py-0"}%>
+                  <%= link_to "follow", toggle_follow_path(follower_id: current_user.id, followee_id: @user.id), {remote: true, name:"follow_#{@user.id}", class: "btn follow rounded-pill py-0"}%>
                 <% end %>
               <% end %>
             </div>

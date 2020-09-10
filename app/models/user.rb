@@ -20,9 +20,12 @@ class User < ApplicationRecord
   mount_uploader :avatar, PhotoUploader
 
   validates :firstname, uniqueness: {scope: :lastname}
+
   validates_each :firstname, :lastname do |record, attr, value|
     record.errors.add(attr, "must start with upper case") if value =~ /\A[[:lower:]]/
   end
+
+
   with_options if: :admin? do |admin|
     admin.validates :password, length: {minimum: 10}
   end
@@ -32,29 +35,18 @@ class User < ApplicationRecord
   # send sign up mail
   after_commit :send_welcome_mail
 
+  # method
   def name
-    name = String.new("")
-    if self.firstname.present?
-      name = name + self.firstname + ' '
-    end
-    if self.lastname.present?
-      name = name + self.lastname
-    end
-    return name
+    [firstname, lastname].select(&:present?).join(' ')
   end
 
   def avatar_name
-    name = String.new("")
-    if self.firstname.present?
-      name += self.firstname[0]
-    end
-    if self.lastname.present?
-      name += self.lastname[0]
-    end
-    return name
+    [firstname.chars.first, lastname.chars.first].compact.join
   end
 
+
   private
+
   def send_welcome_mail
     puts "after_save User"
     SignUpMailerJob.perform_now self

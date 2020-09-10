@@ -2,19 +2,17 @@ Rails.application.routes.draw do
   devise_for :users
 
   root to: "users#discover"
-  get 'newest', to: "home#newest"
-  # get '/discover', to: "home#discover"
-  get '/login', to: "home#login"
-  resources :users, except: [:index, :destroy] do
-    member do
-      get 'feed', to: "users#feed"
-      get 'discover', to: "users#discover"
-      get 'toggle_follow', to: "users#toggle_follow"
-      get 'toggle_like', to: "users#toggle_like"
-    end
-    resources :photos, shallow: true, except: :show
-    resources :albums, shallow: true
+
+  get 'feed', to: "users#feed"
+  get 'discover', to: "users#discover"
+  get 'toggle_like', to: "users#toggle_like"
+  get 'toggle_follow', to: "users#toggle_follow"
+
+
+  resources :users, only: :show do
+    resources :photos, :albums, only: [:new, :create]
   end
+
   namespace :admin do
     resources :albums, except: [:new, :create, :show]
     resources :photos, except: [:new, :create, :show]

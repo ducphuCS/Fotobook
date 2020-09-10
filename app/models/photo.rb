@@ -7,10 +7,14 @@ class Photo < ApplicationRecord
   mount_uploader :image, PhotoUploader
 
   before_save :likes_count_not_nil
+
+
   private
+
   def likes_count_not_nil
     if self.likes_count.nil?
       self.likes_count = 0
     end
   end
+  
 end

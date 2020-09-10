@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def show
     @user = User.find(get_user_id)
   end
@@ -50,29 +51,37 @@ class UsersController < ApplicationController
   def belongs_to_followings(user_id)
     !Follow.where(follower_id: current_user.id, followee_id: user_id).blank?
   end
+
   def liked(content_id, content_type)
     !Like.where(content_id: content_id, user_id: current_user.id, content_type: content_type).blank?
   end
+
   def followed(follower_id, followee_id)
     !Follow.where(follower_id: follower_id, followee_id: followee_id).blank?
   end
+
   helper_method :followed, :liked, :belongs_to_followings
 
 
 
   private
+
   def get_content_type
     params.require(:content_type)
   end
+
   def get_content_id
     params.require(:content_id)
   end
+
   def get_follower_id
     params.require(:follower_id)
   end
+
   def get_followee_id
     params.require(:followee_id)
   end
+
   def get_content
     if params[:content].present?
       params.require(:content)
@@ -80,6 +89,7 @@ class UsersController < ApplicationController
       "photo"
     end
   end
+
   def get_user_id
     if params[:id].present?
       params.require(:id)
@@ -87,4 +97,5 @@ class UsersController < ApplicationController
       current_user.id
     end
   end
+  
 end

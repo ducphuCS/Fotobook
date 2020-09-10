@@ -1,40 +1,43 @@
 class PhotosController < ApplicationController
-  # uploader = PhotoUploader.new
+
   def new
-    @photo = Photo.new
-    @user = User.find(get_user_id)
+    @photo = current_user.photos.new()
   end
+
   def create
-    @photo = Photo.new(photo_params)
-    @photo.user_id = get_user_id
+    @photo = current_user.photos.new(photo_params)
     if @photo.save
-      redirect_to user_path(get_user_id)
+      redirect_to user_path(current_user.id)
     else
-      @user = User.find(get_user_id)
       render "new"
     end
   end
+
   def edit
-    @photo = Photo.find(get_photo_id)
-    @user = User.find(@photo.user_id)
-  end
-  def update
-    @photo = Photo.find(get_photo_id)
-    @photo.update_attributes(photo_params)
-    redirect_to user_path(id: @photo.user_id)
-  end
-  def destroy
-    Photo.destroy(get_photo_id)
+    @photo = current_user.photos.find(get_photo_id)
   end
 
-  private
-  def get_user_id
-    params.require(:user_id)
+  def update
+    @photo = current_user.photos.find(get_photo_id)
+    @photo.update_attributes(photo_params)
+    redirect_to user_path(id: current_user.id)
   end
+
+  def destroy
+    @photo = current_user.photos.find(get_photo_id)
+    Photo.destroy(@photo.id)
+    redirect_to user_path(id: current_user.id)
+  end
+
+
+  private
+
   def photo_params
     params.require(:photo).permit(:title, :description, :public, :image)
   end
+
   def get_photo_id
     params.require(:id)
   end
+
 end

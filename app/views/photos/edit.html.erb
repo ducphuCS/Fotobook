@@ -9,7 +9,7 @@
             <%= t ('.header')%>
           </div>
           <div class="col-auto ">
-            <%= link_to t('.back'), user_path(@user.id), {class: "btn chosen"}%>
+            <%= link_to t('.back'), user_path(current_user.id), {class: "btn chosen"}%>
           </div>
         </div>
         <%= form_for @photo do |f| %>
@@ -38,7 +38,7 @@
           </div>
           <div class="row mx-2 my-5 justify-content-between" style="width:200px;">
             <%= submit_tag t('.save'), {class: "btn add px-3"}%>
-            <%= link_to t('.delete'), photo_path(params.require(:id)), {class: "btn delete px-3", method: :delete}%>
+            <%= link_to t('.delete'), photo_path(@photo.id), {class: "btn delete px-3", method: :delete}%>
           </div>
         <% end %>
       </div>

@@ -3,18 +3,18 @@
   <div class="row bg-grey">
     <div class="col pt-4 align-items-center">
       <div class="row col ml-2">
-        <%= link_to I18n.t('feed'), feed_user_path(current_user.id), {class: "btn text-secondary"}%>
+        <%= link_to I18n.t('feed'), feed_path, {class: "btn text-secondary"}%>
       </div>
       <div class="row col ml-2">
-        <%= link_to I18n.t('discover'), discover_user_path(content: "photo", id: current_user.id), {class: "btn text-color"}%>
+        <%= link_to I18n.t('discover'), discover_path(content: "photo"), {class: "btn text-color"}%>
       </div>
     </div>
     <div class="col-sm-9 col-12 p-3">
       <div class="col bg-white">
         <div class="row justify-content-center">
           <div class="row m-3 btn-group">
-            <%= link_to t('.photo'), discover_user_path(content: "photo", id: current_user.id), {class: "btn rounded-left border chosen", id: "btn-photo"}%>
-            <%= link_to t('.album'), discover_user_path(content: "album", id: current_user.id), {class: "btn rounded-left border bg-white", id: "btn-album"}%>
+            <%= link_to t('.photo'), discover_path(content: "photo"), {class: "btn rounded-left border chosen", id: "btn-photo"}%>
+            <%= link_to t('.album'), discover_path(content: "album"), {class: "btn rounded-left border bg-white", id: "btn-album"}%>
           </div>
         </div>
         <div class="row m-4 justify-content-between font-size">
