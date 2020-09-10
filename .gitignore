@@ -41,6 +41,11 @@
 yarn-debug.log*
 .yarn-integrity
 
+
+tmp/
+log/
+
+
 /app/assets/stylesheets/albums.scss
 /app/assets/stylesheets/home.scss
 /app/assets/stylesheets/photos.scss
