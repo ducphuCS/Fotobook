@@ -1,0 +1,15 @@
+<div class="row bg justify-content-between" name="home-bar" style="height:40px;">
+  <div class="row col-6 align-items-center h-100 m-0 pr-0">
+    <div class="col-4 pr-0 ml-3">
+      <a class="navbar-brand float-right text-white" href="<%= root_unauthenticated_path %>" ><%= t ('brand') %></a>
+    </div>
+    <div class="col py-1 h-100 pr-0">
+      <input class="col h-100 rounded border-0" type="text" name="search-bar" placeholder="Search Photo / Album"/>
+    </div>
+  </div>
+  <div class="row col-6 justify-content-end align-items-center m-0 pl-0">
+    <div class="col-3">
+      <%= link_to t('login'), new_user_session_path, {class: "btn text-white border-0 bg"}%>
+    </div>
+  </div>
+</div>
