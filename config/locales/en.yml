@@ -76,6 +76,16 @@ en:
       private: "Private"
       description: "Description"
       save: "Save"
+    edit:
+      header: "Edit Album"
+      back: "Back"
+      title: "Title"
+      public_mode: "Sharing mode"
+      public: "Public"
+      private: "Private"
+      description: "Description"
+      save: "Save"
+      delete: "Delete"
   photos:
     new:
       header: "New Photo"
