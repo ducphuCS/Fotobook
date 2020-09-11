@@ -14,7 +14,8 @@ RSpec.describe "Signups", type: :system do
     fill_in "user[password_confirmation]", with: "vinamilk123"
 
     click_button "Sign up"
-    expect(page).to have_text("Email can't be blank")
+    expect(page).to have_text("Please enter your email")
+    expect(page.current_path).to eq new_user_registration_path
   end
 
   it "scenario 1 with no firstname" do
@@ -27,6 +28,7 @@ RSpec.describe "Signups", type: :system do
 
     click_button "Sign up"
     expect(page).to have_text("Please enter your first name")
+    expect(page.current_path).to eq new_user_registration_path
   end
 
   it "scenario 1 with no lastname" do
@@ -39,6 +41,7 @@ RSpec.describe "Signups", type: :system do
 
     click_button "Sign up"
     expect(page).to have_text("Please enter your last name")
+    expect(page.current_path).to eq new_user_registration_path
   end
 
   it "scenario 1 with no password" do
@@ -50,6 +53,7 @@ RSpec.describe "Signups", type: :system do
 
     click_button "Sign up"
     expect(page).to have_text("Please enter your password")
+    expect(page.current_path).to eq new_user_registration_path
   end
 
 
@@ -64,6 +68,7 @@ RSpec.describe "Signups", type: :system do
 
     click_button "Sign up"
     expect(page).to have_text("Please enter the same password as above")
+    expect(page.current_path).to eq new_user_registration_path
   end
 
   it "scenario 2 sign up successfully" do

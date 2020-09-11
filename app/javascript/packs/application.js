@@ -122,10 +122,15 @@ $(document).ready(function() {
         required: true,
         maxlength: 25
       },
+      "user[email]": {
+        required: true,
+        maxlength: 255
+      }
+      ,
       "user[password]": {
         required: true,
         minlength: 6,
-        maxlength: 255
+        maxlength: 64
       },
       "user[password_confirmation]": {
         required: true,
@@ -143,6 +148,11 @@ $(document).ready(function() {
         required: "Please enter your last name",
         maxlength: "Your last name must has at most 25 characters"
       },
+      "user[email]": {
+        required: "Please enter your email",
+        maxlength: "Your email must has at most 255 characters"
+      }
+      ,
       "user[password]": {
         required: "Please enter your password",
         minlength: "Your password must has at least 6 characters",
