@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_user!, only: :guest
 
   def show
     @user = User.find(get_user_id)
@@ -19,6 +20,15 @@ class UsersController < ApplicationController
       @content = Photo.where(album_id: nil).where("public = ? or user_id = ?",true, current_user.id).includes(:user).order(updated_at: :desc)
     else
       @content = Album.where(public: true).or(Album.where(user_id: current_user.id)).includes(:user).order(updated_at: :desc)
+    end
+  end
+
+  def guest
+    @content_type = get_content
+    if @content_type == "photo"
+      @content = Photo.where("album_id = ? and public = ?", nil, true).includes(:user).order(updated_at: :desc)
+    else
+      @content = Album.where(public: true).includes(:user).order(updated_at: :desc)
     end
   end
 

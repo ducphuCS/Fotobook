@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root to: "users#feed"
+  devise_scope :user do
+    authenticated :user do
+      root to: "users#feed", as: :root
+    end
+
+    unauthenticated do
+      root to: "users#guest", as: :root_unauthenticated
+    end
+  end
 
   get 'feed', to: "users#feed"
   get 'discover', to: "users#discover"
