@@ -2,9 +2,9 @@
   <div class="col-sm-6 col-6 thumb album-thumb border-0">
     <div class="thumb-container justify-content-center row">
       <div class="images-container">
-        <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="doggo" class="img-fluid thumb-image"/>
-        <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="doggo" class="img-fluid thumb-image"/>
-        <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="doggo" class="img-fluid thumb-image"/>
+        <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image"}%>
+        <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image"}%>
+        <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image"}%>
       </div>
       <div class="photo-count">
         <div class="content">
@@ -21,7 +21,7 @@
           <% if content.user.avatar.file.nil? %>
             <button class="rounded-circle chosen border-0"><%= content.user.avatar_name%></button>
           <% else %>
-            <%= image_tag content.user.avatar.thumb.url, {class: "rounded-circle img-fluid"} %>
+            <%= image_tag content.user.avatar.avatar.url, {class: "rounded-circle img-fluid"} %>
           <% end %>
           <a href="<%= user_path(content.user.id)%>" class="btn font-size pl-1 "><%= content.user.name%></a>
         </div>

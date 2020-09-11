@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def feed
     @content_type = get_content
     if @content_type == "photo"
-      @content = Photo.where(user_id: current_user.followees.ids, public: true).or(Photo.where(user_id: current_user.id)).includes(:user).order(updated_at: :desc)
+      @content = Photo.where(album_id: nil).where("user_id = ? and  public = ? or user_id = ?",current_user.followees.ids ,true, current_user.id).includes(:user).order(updated_at: :desc)
     else
       @content = Album.where(user_id: current_user.followees.ids, public: true).or(Album.where(user_id: current_user.id)).includes(:user).order(updated_at: :desc)
     end
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def discover
     @content_type = get_content
     if @content_type == "photo"
-      @content = Photo.where(public: true).or(Photo.where(user_id: current_user.id)).includes(:user).order(updated_at: :desc)
+      @content = Photo.where(album_id: nil).where("public = ? or user_id = ?",true, current_user.id).includes(:user).order(updated_at: :desc)
     else
       @content = Album.where(public: true).or(Album.where(user_id: current_user.id)).includes(:user).order(updated_at: :desc)
     end
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
     !Follow.where(follower_id: follower_id, followee_id: followee_id).blank?
   end
 
-  helper_method :followed, :liked, :belongs_to_followings
+  helper_method :followed, :liked
 
 
 

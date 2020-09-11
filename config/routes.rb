@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root to: "users#discover"
+  root to: "users#feed"
 
   get 'feed', to: "users#feed"
   get 'discover', to: "users#discover"
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :photos, :albums, only: [:new, :create]
   end
 
-  resources :photos, :albums, only: [:edit, :update, :delete]
+  resources :photos, :albums, only: [:edit, :update, :destroy]
 
   namespace :admin do
     resources :albums, except: [:new, :create, :show]

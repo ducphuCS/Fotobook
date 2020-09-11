@@ -52,7 +52,7 @@
             <% end %>
           </div>
           <div class="row mx-3 my-1">
-            <% @user.photos.each do |photo| %>
+            <% @user.photos.where(album_id: nil).each do |photo| %>
               <% if current_user.id.to_i == params.require(:id).to_i or photo.public%>
                 <%= render partial: "block_photo_tab", locals: {photo: photo}%>
               <% end %>

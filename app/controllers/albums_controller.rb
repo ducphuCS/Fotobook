@@ -2,39 +2,56 @@ class AlbumsController < ApplicationController
 
   def new
     @album = current_user.albums.new()
+    @photo = @album.photos.new()
   end
 
   def create
     @album = current_user.albums.new(album_params)
-    if @album.save
-      redirect_to new_user_album_path(user_id: get_user_id)
+    @album.save
+    @photo = @album.photos.new( photo_params )
+    @photo.user_id = current_user.id
+    if @photo.save
+      redirect_to edit_album_path(@album.id)
     else
-      render "new"
+      Album.destroy(@album.id)
     end
   end
 
   def edit
     @album = current_user.albums.find(get_album_id)
+    @photo = @album.photos.new()
   end
 
   def update
-    value = albums_title
-    @album = current_user.album.find(get_album_id)
-    @album.title = value
-    if @album.update(title: value)
-      flash[:title_change_error] = nil
-      render "show"
+    @album = current_user.albums.find(get_album_id)
+    if @album.save
+      @photo = @album.photos.new( photo_params)
+      @photo.user_id = current_user.id
+      if @photo.save
+        redirect_to edit_album_path(@album.id)
+      else
+        render "edit"
+      end
     else
-      flash[:title_change_error] = @album.errors.messages[:title][0]
-      redirect_to action: :edit
+      render "edit"
     end
+  end
+
+  def destroy
+    @album = current_user.albums.find(get_album_id)
+    Album.destroy(@album.id)
+    redirect_to user_path(id: current_user.id)
   end
 
 
   private
 
-  def albums_title
-    params.require(:album).permit(:title)[:title]
+  def photo_params
+    params.require(:photo).permit(:title, :description, :public, :image)
+  end
+
+  def album_params
+    params.require(:photo).permit(:title, :description, :public)
   end
 
   def get_user_id
