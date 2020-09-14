@@ -24,13 +24,17 @@ class AlbumsController < ApplicationController
 
   def update
     @album = current_user.albums.find(get_album_id)
-    if @album.save
+    if @album.update_attributes(get_album_params)
       @photo = @album.photos.new( photo_params)
-      @photo.user_id = current_user.id
-      if @photo.save
+      if @photo.image.file.nil?
         redirect_to edit_album_path(@album.id)
       else
-        render "edit"
+        @photo.user_id = current_user.id
+        if @photo.save
+          redirect_to edit_album_path(@album.id)
+        else
+          render "edit"
+        end
       end
     else
       render "edit"
