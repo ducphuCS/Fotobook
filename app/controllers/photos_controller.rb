@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
 
   def new
-    @photo = current_user.photos.new()
+    @photo = current_user.photos.new
   end
 
   def create

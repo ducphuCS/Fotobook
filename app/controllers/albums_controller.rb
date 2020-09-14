@@ -1,14 +1,14 @@
 class AlbumsController < ApplicationController
 
   def new
-    @album = current_user.albums.new()
-    @photo = @album.photos.new()
+    @album = current_user.albums.new
+    @photo = @album.photos.new
   end
 
   def create
     @album = current_user.albums.new(album_params)
     @album.save
-    @photo = @album.photos.new( photo_params )
+    @photo = @album.photos.new(photo_params)
     @photo.user_id = current_user.id
     if @photo.save
       redirect_to edit_album_path(@album.id)
@@ -19,7 +19,7 @@ class AlbumsController < ApplicationController
 
   def edit
     @album = current_user.albums.find(get_album_id)
-    @photo = @album.photos.new()
+    @photo = @album.photos.new
   end
 
   def update
