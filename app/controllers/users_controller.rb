@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def guest
     @content_type = get_content
     if @content_type == "photo"
-      @content = Photo.where("album_id = ? and public = ?", nil, true).includes(:user).order(updated_at: :desc)
+      @content = Photo.where(public: true, album_id: nil).includes(:user).order(updated_at: :desc)
     else
       @content = Album.where(public: true).includes(:user).order(updated_at: :desc)
     end

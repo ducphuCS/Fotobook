@@ -1,0 +1,52 @@
+<div class="container-fluid font">
+  <%= render "shared/homebar_unauthenticated"%>
+  <div class="row bg-grey">
+    <div class="col pt-4 align-items-center">
+      <div class="row col ml-2">
+        <%= link_to I18n.t('feed'), root_unauthenticated_path(content: "photo"), {class: "btn text-color"}%>
+      </div>
+      <div class="row col ml-2">
+        <%= link_to I18n.t('discover'), discover_path(content: "photo"), {class: "btn text-secondary"}%>
+      </div>
+    </div>
+    <div class="col-sm-9 col-12 p-3">
+      <div class="col bg-white">
+        <div class="row justify-content-center">
+          <div class="row m-3 btn-group">
+            <%= link_to t('.photo'), root_unauthenticated_path(content: "photo"), {class: "btn rounded-left border chosen", id: "btn-photo"}%>
+            <%= link_to t('.album'), root_unauthenticated_path(content: "album"), {class: "btn rounded-left border bg-white", id: "btn-album"}%>
+          </div>
+        </div>
+        <div class="row m-4 justify-content-between font-size">
+          <% if @content_type == "photo"%>
+            <% @content.each do |content|%>
+              <%= render partial: "block_guest_photo", locals: {content: content, content_type: "Photo"}%>
+            <% end %>
+          <% else %>
+            <% @content.each do |content| %>
+              <%= render partial: "block_guest_album", locals: {content: content, content_type: "Album"} %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+<!-- MODAL for PHOTO-->
+<div id="modal-photo" class="modal" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content ">
+      <div class="modal-header border-0">
+        <p class="modal-title font-weight-bold" id="modal-photo-title"></p>
+        <button type="button" class="photo-modal-close close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body my-n1 py-0">
+        <img src="" class="img" id="modal-photo-body" style="width:100%"/>
+        <p id="modal-photo-description" style="font-size:10px" class="pt-2"></p>
+      </div>
+    </div>
+  </div>
+</div>
