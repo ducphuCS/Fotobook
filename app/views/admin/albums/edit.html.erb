@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <%= render "shared/homebar" %>
+  <div class="row bg-grey">
+    <%= render "shared/feed_discover"%>
+    <div class="col-sm-9 col-12 p-3">
+      <div class="col bg-white pb-3 mb-5">
+        <div class="font-weight-bold border-bottom pt-4 pb-3 justify-content-between row mx-1" style="font-size:20px;">
+          <div class="col">
+            <%= t ('.header')%>
+          </div>
+          <div class="col-auto ">
+            <%= link_to t('.back'), admin_albums_path, {class: "btn chosen"}%>
+          </div>
+        </div>
+        <%= form_for @photo, url: admin_album_path, method: :patch do |f| %>
+          <div class="row">
+            <div class="col-12 col-sm px-4">
+              <div class="form-group-vertical mt-4">
+                <%= f.label :title, t('.title')%><br>
+                <%= f.text_field :title, {class: "form-control col-11", value: @album.title}%>
+              </div>
+              <div class="form-group-vertical my-4">
+                <%= f.label :public, t('.public_mode')%><br>
+                <%= f.select :public, options_for_select([[t('.public'), true],[t('.private'), false]], @album.public), {class: "col-5 custom-select"}%>
+              </div>
+            </div>
+            <div class="col-12 col-sm px-4">
+              <div class="form-group-vertical mt-4">
+                <%= f.label :description, t('.description')%><br>
+                <%= f.text_area :description, {value: @album.description, class: "form-control", rows: "5", cols: "80"}%>
+              </div>
+            </div>
+          </div>
+          <div class="row mx-2 my-3">
+            <% @album.photos.each do |photo| %>
+              <% if !photo.image.file.nil?%>
+                <%= image_tag photo.image.thumb.url, {class: "form-group-vertical bg-grey rounded add-photo col-sm-3 col-12 mr-3"} %>
+              <% end %>
+            <% end %>
+            <div class="form-group-vertical bg-grey rounded add-photo" style="height:200px; width:200px">
+              <%= f.file_field :image, {style: "opacity:0; height: 200px; width: 200px"}%>
+            </div>
+          </div>
+          <div class="row mx-2 my-5 justify-content-between" style="width:200px;">
+            <%= submit_tag t('.save'), {class: "btn add px-3"}%>
+            <%= link_to t('.delete'), admin_album_path(@album.id), {class: "btn delete px-3", method: :delete}%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col">
+    </div>
+  </div>
+</div>

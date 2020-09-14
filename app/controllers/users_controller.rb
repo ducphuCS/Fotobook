@@ -34,19 +34,6 @@ class UsersController < ApplicationController
 
   def admin
     redirect_to admin_photos_path
-    @content_type = get_content
-    if @content_type == "photo"
-      @content = Photo.where(album_id: nil)
-      render "admin_photos"
-    else
-      if @content_type == "album"
-        @content = Album.all
-        render "admin_albums"
-      else
-        @content = User.where.not(id: current_user.id )
-        render "admin_users"
-      end
-    end
   end
 
   def toggle_follow

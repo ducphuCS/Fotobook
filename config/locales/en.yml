@@ -44,6 +44,17 @@ en:
         description: "Description"
         save: "Save"
         delete: "Delete"
+    albums:
+      edit:
+        header: "Edit Album"
+        back: "Back"
+        title: "Title"
+        public_mode: "Sharing mode"
+        public: "Public"
+        private: "Private"
+        description: "Description"
+        save: "Save"
+        delete: "Delete"
   users:
     discover:
       title: "Fotobook"
