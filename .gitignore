@@ -44,6 +44,8 @@ yarn-debug.log*
 log/
 tmp/
 
+app/assets/styleshhets/admin/
+
 app/assets/stylesheets/albums.scss
 app/assets/stylesheets/home.scss
 app/assets/stylesheets/photos.scss
