@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: ducphunus
+  api_key: '976732784993644'
+  api_secret: 1cYy72RiXjn7EMxNw7tpBGkecfg
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: ducphunus
+  api_key: '976732784993644'
+  api_secret: 1cYy72RiXjn7EMxNw7tpBGkecfg
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: ducphunus
+  api_key: '976732784993644'
+  api_secret: 1cYy72RiXjn7EMxNw7tpBGkecfg
+  enhance_image_tag: true
+  static_file_support: false

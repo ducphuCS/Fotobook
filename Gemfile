@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.0'
 
 
-
+gem 'cloudinary'
 gem 'devise'
 gem 'carrierwave', '~> 2.0'
 gem 'mini_magick', '~> 4.3'
