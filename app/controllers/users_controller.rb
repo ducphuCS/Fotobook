@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   end
 
   def toggle_follow
-    follower_id = get_follower_id
+    follower_id = current_user.id
     followee_id = get_followee_id
     follow = Follow.where(follower_id: follower_id, followee_id: followee_id)
     if follow.blank?
@@ -87,10 +87,6 @@ class UsersController < ApplicationController
 
   def get_content_id
     params.require(:content_id)
-  end
-
-  def get_follower_id
-    params.require(:follower_id)
   end
 
   def get_followee_id
