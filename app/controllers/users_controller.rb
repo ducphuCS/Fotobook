@@ -33,19 +33,10 @@ class UsersController < ApplicationController
   end
 
   def admin
-    redirect_to admin_photos_path
-    @content_type = get_content
-    if @content_type == "photo"
-      @content = Photo.where(album_id: nil)
-      render "admin_photos"
+    if current_user.admin
+      redirect_to admin_photos_path
     else
-      if @content_type == "album"
-        @content = Album.all
-        render "admin_albums"
-      else
-        @content = User.where.not(id: current_user.id )
-        render "admin_users"
-      end
+      redirect_to user_path(current_user.id)
     end
   end
 
@@ -86,10 +77,6 @@ class UsersController < ApplicationController
 
   helper_method :followed, :liked
 
-
-  def active_for_authentication?
-    super and self.active?
-  end
 
 
   private

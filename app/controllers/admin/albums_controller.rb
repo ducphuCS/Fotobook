@@ -1,7 +1,7 @@
 class Admin::AlbumsController < ApplicationController
 
   def index
-    @content = Album.where
+    @content = Album.all
   end
 
   def edit
@@ -11,9 +11,26 @@ class Admin::AlbumsController < ApplicationController
 
   def update
     @album = Album.find(get_album_id)
-    @album.update_attributes(get_album_params)
-    if @album.save
+    if @album.update_attributes(get_album_params)
       @photo = @album.photos.new(get_photo_params)
+      if @photo.image.file.nil?
+        redirect_to edit_admin_album_path(@album.id)
+      else
+        @photo.user_id = @album.user_id
+        if @photo.save
+          redirect_to edit_admin_album_path(@album.id)
+        else
+          render "edit"
+        end
+      end
+    else
+      render "edit"
+    end
+  end
+
+  def destroy
+    Album.destroy(get_album_id)
+    redirect_to admin_albums_path
   end
 
 
