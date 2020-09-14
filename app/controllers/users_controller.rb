@@ -17,9 +17,9 @@ class UsersController < ApplicationController
   def discover
     @content_type = get_content
     if @content_type == "photo"
-      @content = Photo.where(album_id: nil).where("public = ? or user_id = ?",true, current_user.id).includes(:user).order(updated_at: :desc)
+      @content = Photo.where(album_id: nil).where(public:true).includes(:user).order(updated_at: :desc)
     else
-      @content = Album.where(public: true).or(Album.where(user_id: current_user.id)).includes(:user).order(updated_at: :desc)
+      @content = Album.where(public: true).includes(:user).order(updated_at: :desc)
     end
   end
 

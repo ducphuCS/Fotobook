@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
 
   def index
-    @content = User.where.not(id: current_user.id)
+    @content = User.where.not(id: current_user.id).page params[:page]
   end
 
   def edit

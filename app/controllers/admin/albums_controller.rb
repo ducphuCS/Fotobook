@@ -1,7 +1,7 @@
 class Admin::AlbumsController < ApplicationController
 
   def index
-    @content = Album.all
+    @content = Album.page params[:page]
   end
 
   def edit

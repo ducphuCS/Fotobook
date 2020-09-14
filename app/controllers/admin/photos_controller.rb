@@ -1,7 +1,7 @@
 class Admin::PhotosController < ApplicationController
 
   def index
-    @content = Photo.where(album_id: nil)
+    @content = Photo.where(album_id: nil).page params[:page]
   end
 
   def edit

@@ -3,7 +3,7 @@
   <div class="row bg-grey">
     <%= render "shared/manage" %>
     <div class="col-sm-9 col-12 p-3">
-      <div class="col bg-white pb-3 mb-5 row" style="height:1000px">
+      <div class="col bg-white pb-3 mb-5 row">
         <div class="row my-3">
           <div class="col-11 row my-2 mx-1">
             <% @content.each do |content| %>
@@ -11,6 +11,7 @@
             <% end %>
           </div>
         </div>
+        <%= render partial: "shared/paginate", locals: {content: @content}%>
       </div>
     </div>
     <div class="col"></div>
