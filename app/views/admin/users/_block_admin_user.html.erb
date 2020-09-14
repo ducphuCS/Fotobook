@@ -4,7 +4,7 @@
   <div class="col-4"><%= content.email%></div>
   <div class="col-3">4:56am 04/16/2018</div>
   <div class="col-auto row">
-    <%= link_to "Edit", edit_user_registration_path(id: content.id), {class:"btn add px mr-2"}%>
-    <%= link_to "Delete", user_registration_path, {class: "btn delete px-3 mr-2", method: :delete}%>
+    <%= link_to "Edit", edit_admin_user_path(id: content.id), {class:"btn add px mr-2"}%>
+    <%= link_to "Delete", admin_user_path(content.id), {class: "btn delete px-3 mr-2", method: :delete}%>
   </div>
 </div>

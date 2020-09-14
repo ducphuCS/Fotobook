@@ -33,7 +33,11 @@ class UsersController < ApplicationController
   end
 
   def admin
-    redirect_to admin_photos_path
+    if current_user.admin
+      redirect_to admin_photos_path
+    else
+      redirect_to user_path(current_user.id)
+    end
   end
 
   def toggle_follow
@@ -73,10 +77,6 @@ class UsersController < ApplicationController
 
   helper_method :followed, :liked
 
-
-  def active_for_authentication?
-    super and self.active?
-  end
 
 
   private

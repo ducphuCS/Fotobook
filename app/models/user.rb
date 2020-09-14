@@ -4,6 +4,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :validatable, :confirmable, :recoverable
 
+
+  def active_for_authentication?
+      super and self.active?
+  end
+
+
   # Setup accessible (or protected) attributes for your model
   # attr_accessible :email, :password, :password_confirmation, :remember_me
 
