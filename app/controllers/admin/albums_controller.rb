@@ -1,4 +1,5 @@
 class Admin::AlbumsController < ApplicationController
+  before_action :check_admin
 
   def index
     @content = Album.page params[:page]
@@ -31,6 +32,15 @@ class Admin::AlbumsController < ApplicationController
   def destroy
     Album.destroy(get_album_id)
     redirect_to admin_albums_path
+  end
+
+
+  protected
+
+  def check_admin
+    if !current_user.admin?
+      redirect_to root_path
+    end
   end
 
 

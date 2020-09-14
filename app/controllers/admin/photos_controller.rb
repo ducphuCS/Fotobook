@@ -1,4 +1,5 @@
 class Admin::PhotosController < ApplicationController
+  before_action :check_admin
 
   def index
     @content = Photo.where(album_id: nil).page params[:page]
@@ -18,6 +19,16 @@ class Admin::PhotosController < ApplicationController
     Photo.destroy(get_photo_id)
     redirect_to admin_path(content: "photo")
   end
+
+
+  protected
+
+  def check_admin
+    if !current_user.admin?
+      redirect_to root_path
+    end
+  end
+
 
   private
 

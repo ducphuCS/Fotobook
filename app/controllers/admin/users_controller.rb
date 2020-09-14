@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  before_action :check_admin
 
   def index
     @content = User.where.not(id: current_user.id).page params[:page]
@@ -17,6 +18,15 @@ class Admin::UsersController < ApplicationController
   def destroy
       User.destroy(get_user_id)
       redirect_to admin_user_path
+  end
+
+
+  protected
+
+  def check_admin
+    if !current_user.admin?
+      redirect_to root_path
+    end
   end
 
 
