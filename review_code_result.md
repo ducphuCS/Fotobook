@@ -78,3 +78,40 @@ end
 ```
 
 12. Đã train SLIM rồi thì view prefer viết = SLIM hơn là ERB
+
+
+# Review Code Result 20200914
+---
+
+1. Các page index cần có phân trang
+
+
+    - app/controllers/admin/albums_controller.rb#index
+
+    - app/controllers/admin/photos_controller.rb#index
+
+    - etc.
+
+
+2. Chức năng cho admin mà ko thấy việc phân quyền chỉ cho admin xài chỗ nào cả, giờ thằng nào có link tới mấy trang admin thì nghiễm nhiên làm gì cũng dc, chả ai chặn được tụi nó.
+
+3. Lặp lại lỗi bảo mật tương tự hôm trước
+
+    - app/controllers/users_controller.rb#toggle_follow: `follower_id` mà để user truyền lên thì anh sẽ dễ dàng gollow ai đó dưới danh nghĩa của em mà chẳng cần có account của em.
+
+
+4. Nếu query với active record chỉ dùng so sánh bằng thì ưu tiên viết kiểu hash condition hơn là array condition
+
+    - app/controllers/users_controller.rb:11
+
+5. Trong Ruby invoke method mà ko truyền parameter thì ko nên dùng ngoặc tròn (`()`). Ví dụ: `current_user.albums.new()` => `current_user.albums.new`   
+
+6. Check lại requirement về việc lấy data cho trang discover. Trang này là lấy public data của all user. Những câu query em đang dùng trong  app/controllers/users_controller.rb#discover ko phù hợp với đề bài
+
+7. Đã học qua SLIM thì nên tập viết template = `slim` thay vì `erb`
+
+8. Không dùng inline CSS/JS, cần style/js gì thì viết ra file đàng hoàng
+
+9. Code template đang bị lặp lại nhiều. Cần suy nghĩ về việc tách những code bị lặp lại ra layout, và những code lặp giữa form create/edit ra partial 
+
+10. Refer using view helper thay vì dùng html thuần. Ví dụ: dùng `link_to` thay vì dùng `<a>`
