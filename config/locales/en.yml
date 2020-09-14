@@ -32,7 +32,18 @@
 en:
   brand: "Fotobook"
   login: "Login"
-  home:
+  admin:
+    photos:
+      edit:
+        header: "Edit Photo"
+        back: "Back"
+        title: "Title"
+        public_mode: "Sharing mode"
+        public: "Public"
+        private: "Private"
+        description: "Description"
+        save: "Save"
+        delete: "Delete"
   users:
     discover:
       title: "Fotobook"

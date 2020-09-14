@@ -33,9 +33,10 @@ class UsersController < ApplicationController
   end
 
   def admin
+    redirect_to admin_photos_path
     @content_type = get_content
     if @content_type == "photo"
-      @content = Photo.all
+      @content = Photo.where(album_id: nil)
       render "admin_photos"
     else
       if @content_type == "album"
