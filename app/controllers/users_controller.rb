@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def feed
     @content_type = get_content
     if @content_type == "photo"
-      @content = Photo.where(album_id: nil).where("user_id = ? and  public = ? or user_id = ?",current_user.followees.ids ,true, current_user.id).includes(:user).order(updated_at: :desc)
+      @content = Photo.where(user_id: current_user.followees.ids, public:true).or(Photo.where(user_id: current_user.id)).where(album_id: nil).includes(:user).order(updated_at: :desc)
     else
       @content = Album.where(user_id: current_user.followees.ids, public: true).or(Album.where(user_id: current_user.id)).includes(:user).order(updated_at: :desc)
     end
