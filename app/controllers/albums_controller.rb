@@ -18,20 +18,12 @@ class AlbumsController < ApplicationController
   end
 
   def edit
-    if current_user.admin
-      @album = Album.find(get_album_id)
-    else
-      @album = current_user.albums.find(get_album_id)
-    end
+    @album = current_user.albums.find(get_album_id)
     @photo = @album.photos.new()
   end
 
   def update
-    if current_user.admin
-      @album = Album.find(get_album_id)
-    else
-      @album = current_user.albums.find(get_album_id)
-    end
+    @album = current_user.albums.find(get_album_id)
     if @album.save
       @photo = @album.photos.new( photo_params)
       @photo.user_id = current_user.id
@@ -46,15 +38,9 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    if current_user.admin
-      @album = Album.find(get_album_id)
-      Album.destroy(@album.id)
-      redirect_to admin_path
-    else
-      @album = current_user.albums.find(get_album_id)
-      Album.destroy(@album.id)
-      redirect_to user_path(id: current_user.id)
-    end
+    @album = current_user.albums.find(get_album_id)
+    Album.destroy(@album.id)
+    redirect_to user_path(id: current_user.id)
   end
 
 
