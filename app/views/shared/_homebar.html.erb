@@ -19,7 +19,11 @@
           <% else %>
             <%= image_tag current_user.avatar.thumb.url, {class: "nav-item nav-link btn rounded-circle img-fluid p-0", style: "height:40px"} %>
           <% end %>
-          <a href="<%= user_path(current_user.id)%>" class="nav-item nav-link btn text-white border-0"><%= current_user.name%></a>
+          <% if !current_user.admin%>
+            <a href="<%= user_path(current_user.id)%>" class="nav-item nav-link btn text-white border-0"><%= current_user.name%></a>
+          <% else %>
+            <a href="<%= admin_path %>" class="nav-item nav-link btn text-white border-0"><%=current_user.name %></a>
+          <% end %>
         </div>
         <div class="col-3 navbar-nav">
           <%= link_to t('logout'), destroy_user_session_path, {class: "nav-item nav-link btn text-white border-0", method: "delete"}%>

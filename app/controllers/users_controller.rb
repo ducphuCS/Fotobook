@@ -32,6 +32,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def admin
+    @content_type = get_content
+    if @content_type == "photo"
+      @content = Photo.all
+      render "admin_photos"
+    else
+      if @content_type == "album"
+        @content = Album.all
+        render "admin_albums"
+      else
+        @content = User.where.not(id: current_user.id )
+        render "admin_users"
+      end
+    end
+  end
+
   def toggle_follow
     follower_id = get_follower_id
     followee_id = get_followee_id
@@ -69,6 +85,10 @@ class UsersController < ApplicationController
 
   helper_method :followed, :liked
 
+
+  def active_for_authentication?
+    super and self.active?
+  end
 
 
   private

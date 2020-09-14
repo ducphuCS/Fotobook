@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'discover', to: "users#discover"
   get 'toggle_like', to: "users#toggle_like"
   get 'toggle_follow', to: "users#toggle_follow"
+  get 'admin', to: "users#admin"
 
 
   resources :users, only: :show do

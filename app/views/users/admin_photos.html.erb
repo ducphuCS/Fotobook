@@ -1,0 +1,24 @@
+<div class="container-fluid font">
+  <%= render "shared/homebar"%>
+  <div class="row bg-grey">
+    <%= render "shared/manage" %>
+    <div class="col-sm-9 col-12 p-3">
+      <div class="col bg-white pb-3 mb-5 row" style="height:1000px">
+        <div class="row my-3">
+          <div class="col-11 row my-2 mx-1">
+            <% @content.each do |content| %>
+              <%= render partial: "block_admin_photo", locals: {content: content}%>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+<% if @content_type == "photo"%>
+  <script>
+    $("a[name='admin_photo']").addClass('text-color')
+    $("a[name='admin_photo']").removeClass('text-secondary')
+  </script>
+<% end %>

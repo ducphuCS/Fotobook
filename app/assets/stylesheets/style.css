@@ -99,6 +99,7 @@
   position: absolute;
   top: 0px;
   right: 0px;
+  left: 0px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

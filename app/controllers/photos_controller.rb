@@ -14,19 +14,35 @@ class PhotosController < ApplicationController
   end
 
   def edit
-    @photo = current_user.photos.find(get_photo_id)
+    if current_user.admin
+      @photo = Photo.find(get_photo_id)
+    else
+      @photo = current_user.photos.find(get_photo_id)
+    end
   end
 
   def update
-    @photo = current_user.photos.find(get_photo_id)
-    @photo.update_attributes(photo_params)
-    redirect_to user_path(id: current_user.id)
+    if current_user.admin
+      @photo = Photo.find(get_photo_id)
+      @photo.update_attributes(photo_params)
+      redirect_to admin_path
+    else
+      @photo = current_user.photos.find(get_photo_id)
+      @photo.update_attributes(photo_params)
+      redirect_to user_path(id: current_user.id)
+    end
   end
 
   def destroy
-    @photo = current_user.photos.find(get_photo_id)
-    Photo.destroy(@photo.id)
-    redirect_to user_path(id: current_user.id)
+    if current_user.admin
+      @photo = Photo.find(get_photo_id)
+      Photo.destroy(@photo.id)
+      redirect_to admin_path
+    else
+      @photo = current_user.photos.find(get_photo_id)
+      Photo.destroy(@photo.id)
+      redirect_to user_path(id: current_user.id)
+    end
   end
 
 

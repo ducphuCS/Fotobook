@@ -46,6 +46,13 @@ en:
       title: "Fotobook"
       photo: "PHOTO"
       album: "ALBUM"
+    admin_photos:
+      title: "Fotobook Admin"
+      photo: "PHOTO"
+      album: "ALBUM"
+      admin_photo: "Manage Photos"
+      admin_album: "Manage Albums"
+      admin_user: "Manage Users"
     show:
       edit: "Edit Profile"
       photos_tab: " PHOTOS"

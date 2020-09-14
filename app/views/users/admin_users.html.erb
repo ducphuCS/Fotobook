@@ -1,0 +1,29 @@
+<div class="container-fluid font">
+  <%= render "shared/homebar"%>
+  <div class="row bg-grey">
+    <%= render "shared/manage" %>
+    <div class="col-sm-9 col-12 p-3">
+      <div class="col bg-white pb-3 mb-5 row" style="height:1000px">
+        <div class="" style="width: 100%">
+          <div class="font-weight-bold border-bottom pt-4 row" style="font-size:16px;width:100%;">
+            <div class="col pr-0">First Name</div>
+            <div class="col">Last Name</div>
+            <div class="col-4">Email</div>
+            <div class="col-3">Last Login</div>
+            <div class="col"></div>
+          </div>
+          <% @content.each do |content| %>
+            <%= render partial: "block_admin_user", locals: {content: content}%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+<% if @content_type == "user"%>
+  <script>
+    $("a[name='admin_user']").addClass('text-color')
+    $("a[name='admin_user']").removeClass('text-secondary')
+  </script>
+<% end %>

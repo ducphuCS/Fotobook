@@ -9,7 +9,11 @@
             <%= t ('.header')%>
           </div>
           <div class="col-auto ">
-            <%= link_to t('.back'), user_path(current_user.id), {class: "btn chosen"}%>
+            <% if current_user.admin%>
+              <%= link_to t('.back'), admin_path, {class: "btn chosen"}%>
+            <% else %>
+              <%= link_to t('.back'), user_path(current_user.id), {class: "btn chosen"}%>
+            <% end %>
           </div>
         </div>
         <%= form_for @photo, url: album_path, method: :put do |f| %>
