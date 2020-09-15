@@ -1,0 +1,15 @@
+<div class="col-sm-6 col-6 thumb album-thumb border-0">
+  <div class="thumb-container justify-content-center row">
+    <div class="images-container">
+      <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image"}%>
+      <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image"}%>
+      <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image"}%>
+    </div>
+    <div class="photo-count">
+      <div class="content">
+        <div class="number"><%= content.photos.size%></div>
+        <div class="label">PHOTOS</div>
+      </div>
+    </div>
+  </div>
+</div>

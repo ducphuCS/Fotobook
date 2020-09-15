@@ -1,32 +1,7 @@
 <div class="col-sm-6 col-12 row bg-grey py-2 rounded shadow pr-0 mb-2">
-  <div class="col-sm-6 col-6 thumb album-thumb border-0">
-    <div class="thumb-container justify-content-center row">
-      <div class="images-container">
-        <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image"}%>
-        <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image"}%>
-        <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image"}%>
-      </div>
-      <div class="photo-count">
-        <div class="content">
-          <div class="number"><%= content.photos.size%></div>
-          <div class="label">PHOTOS</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render partial: "shared/album_display", locals: {content: content}%>
   <div class="col-sm-6 col-12 row mr-0 pr-0">
-    <div class="row align-items-center col-12 mr-0 pr-0 justify-content-between" name="info-part">
-      <div class="col-auto row">
-        <div class="row col-auto">
-          <% if content.user.avatar.file.nil? %>
-            <button class="rounded-circle chosen border-0"><%= content.user.avatar_name%></button>
-          <% else %>
-            <%= image_tag content.user.avatar.avatar.url, {class: "rounded-circle img-fluid"} %>
-          <% end %>
-          <a href="<%= user_path(content.user.id)%>" class="btn font-size pl-1 "><%= content.user.name%></a>
-        </div>
-      </div>
-    </div>
+    <%= render partial: "shared/user_display", locals: {content: content}%>
     <div class="row font-weight-bold col-12" name="title-post"><%= content.title %> </div>
     <div class="row col-12" name="description-post"><%= content.description %></div>
     <div class="row justify-content-between align-items-end col-12 mr-0 pr-0">
