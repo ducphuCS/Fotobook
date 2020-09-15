@@ -78,14 +78,14 @@
         <div class="d-none" name="followings-tab">
           <div class="row mx-3 my-1">
             <% @user.followees.each do |followee| %>
-              <%= render partial: "block_following_tab", locals: {rendered_user: followee} %>
+              <%= render partial: "shared/follow_tab", locals: {rendered_user: followee} %>
             <% end %>
           </div>
         </div>
         <div class="d-none" name="followers-tab">
           <div class="row mx-3 my-1">
             <% @user.followers.each do |follower| %>
-              <%= render partial: "block_follower_tab", locals: {rendered_user: follower} %>
+              <%= render partial: "shared/follow_tab", locals: {rendered_user: follower} %>
             <% end %>
           </div>
         </div>

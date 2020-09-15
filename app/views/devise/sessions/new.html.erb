@@ -1,5 +1,4 @@
-
-<div class="container-fluid">
+<div class="container-fluid font">
   <%= render "shared/homebar_unauthenticated"%>
   <div class="row h-30">
   </div>
@@ -36,8 +35,8 @@
           </div>
         <% end %>
 
-        <div class="actions justify-content-center row col-12 my-4">
-          <%= f.submit t('.login'), class: "btn chosen col-4 rounded-lg font-size-20 h-50"%>
+        <div class="actions justify-content-center row col-12 my-4 h-50">
+          <%= f.submit t('.login'), class: "btn chosen col-4 rounded-lg font-size-20 h-50 "%>
         </div>
       <% end %>
       <%= render "devise/shared/links" %>
