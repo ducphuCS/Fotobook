@@ -114,12 +114,6 @@ en:
   albums:
     new:
       header: "New Album"
-      title: "Title"
-      public_mode: "Sharing mode"
-      public: "Public"
-      private: "Private"
-      description: "Description"
-      save: "Save"
     edit:
       header: "Edit Album"
       back: "Back"
@@ -133,12 +127,6 @@ en:
   photos:
     new:
       header: "New Photo"
-      title: "Title"
-      public_mode: "Sharing mode"
-      public: "Public"
-      private: "Private"
-      description: "Description"
-      save: "Save"
     edit:
       header: "Edit Photo"
       back: "Back"
@@ -149,3 +137,12 @@ en:
       description: "Description"
       save: "Save"
       delete: "Delete"
+  shared:
+    new_content:
+      back: "Back"
+      title: "Title"
+      public_mode: "Sharing mode"
+      public: "Public"
+      private: "Private"
+      description: "Description"
+      save: "Save"

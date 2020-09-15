@@ -6,37 +6,7 @@
       <div class="col bg-white pb-3 mb-5">
         <div class="font-weight-bold border-bottom py-4" style="font-size:20px;"><%= t ('.header')%></div>
         <%= form_for @photo, url: user_photos_path do |f| %>
-          <div class="row">
-            <div class="col-12 col-sm px-4">
-              <div class="form-group-vertical mt-4">
-                <%= f.label :title, t('.title')%><br>
-                <%= f.text_field :title, {placeholder: "Photo Title", class: "form-control col-11"}%>
-              </div>
-              <div class="form-group-vertical my-4">
-                <%= f.label :sharing, t('.public_mode')%><br>
-                <%= select_tag(:sharing,
-                  options_for_select([
-                  [t('.public'), "public"],
-                  [t('.private'), "private"]
-                  ], "public"),
-                  {class: "col-5 custom-select"})%>
-              </div>
-            </div>
-            <div class="col-12 col-sm px-4">
-              <div class="form-group-vertical mt-4">
-                <%= f.label :description, t('.description')%><br>
-                <%= f.text_area :description, {placeholder: "Photo Description", class: "form-control", rows: "5", cols: "80"}%>
-              </div>
-            </div>
-          </div>
-          <div class="row mx-2 my-3">
-            <div class="form-group-vertical bg-grey rounded add-photo square-200">
-              <%= f.file_field :image, {class: "square-200 o-0"}%>
-            </div>
-          </div>
-          <div class="row mx-2 my-5">
-            <%= submit_tag t('.save'), {class: "btn add px-3"}%>
-          </div>
+          <%= render partial: "shared/new_content", locals: {f: f, content: "Photo"}%>
         <% end %>
       </div>
     </div>
