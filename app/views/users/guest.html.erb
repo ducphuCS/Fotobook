@@ -33,3 +33,11 @@
     <div class="col"></div>
   </div>
 </div>
+<% if @content_type == "album"%>
+  <script>
+    $("#btn-photo").addClass("bg-white");
+    $("#btn-photo").removeClass("chosen");
+    $('#btn-album').addClass("chosen");
+    $('#btn-album').removeClass("bg-white");
+  </script>
+<% end %>
