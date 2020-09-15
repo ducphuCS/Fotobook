@@ -13,29 +13,7 @@
           </div>
         </div>
         <%= form_for @photo do |f| %>
-          <div class="row">
-            <div class="col-12 col-sm px-4">
-              <div class="form-group-vertical mt-4">
-                <%= f.label :title, t('.title')%><br>
-                <%= f.text_field :title, {placeholder: "Photo Title", class: "form-control col-11"}%>
-              </div>
-              <div class="form-group-vertical my-4">
-                <%= f.label :public, t('.public_mode')%><br>
-                <%= f.select :public, options_for_select([[t('.public'), true],[t('.private'), false]], true), {class: "col-5 custom-select"}%>
-              </div>
-            </div>
-            <div class="col-12 col-sm px-4">
-              <div class="form-group-vertical mt-4">
-                <%= f.label :description, t('.description')%><br>
-                <%= f.text_area :description, {placeholder: "Photo Description", class: "form-control", rows: "5", cols: "80"}%>
-              </div>
-            </div>
-          </div>
-          <div class="row mx-2 my-3">
-            <div class="form-group-vertical bg-grey rounded add-photo square-200">
-              <%= image_tag @photo.image.thumb.url%>
-            </div>
-          </div>
+          <%= render partial: "shared/edit_photo", locals: {f: f}%>
           <div class="row mx-2 my-5 justify-content-between w-200">
             <%= submit_tag t('.save'), {class: "btn add px-3"}%>
             <%= link_to t('.delete'), photo_path(@photo.id), {class: "btn delete px-3", method: :delete}%>
