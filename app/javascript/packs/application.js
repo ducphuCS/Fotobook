@@ -167,8 +167,32 @@ $(document).ready(function() {
     },
   });
 
+  // new_photo
+  $("#new_photo").validate({
+    rules: {
+      "photo[title]": "required",
+      "photo[description]": "required"
+    },
+    messages: {
+      "photo[title]": "Please enter Photo title",
+      "photo[description]": "Please enter Photo description"
+    },
+  });
 
+  // new album validation
+  $("#new_album").validate({
+    rules: {
+      "photo[title]": "required",
+      "photo[description]": "required"
+    },
+    messages: {
+      "photo[title]": "Please enter Photo title",
+      "photo[description]": "Please enter Photo description"
+    },
+  });
 });
+
+
 function setAllTabOff() {
   $("div[name='photos-tab']").addClass("d-none");
   $("div[name='albums-tab']").addClass("d-none");
