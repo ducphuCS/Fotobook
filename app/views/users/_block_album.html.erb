@@ -1,54 +1,7 @@
 <div class="col-sm-6 col-12 row bg-grey py-2 rounded shadow pr-0 mb-2">
-  <div class="col-sm-6 col-6 thumb album-thumb border-0">
-    <div class="thumb-container justify-content-center row">
-      <div class="images-container">
-        <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image"}%>
-        <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image"}%>
-        <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image"}%>
-      </div>
-      <div class="photo-count">
-        <div class="content">
-          <div class="number"><%= content.photos.size%></div>
-          <div class="label">PHOTOS</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <%= render partial: "shared/album_display", locals: {content: content}%>
   <div class="col-sm-6 col-12 row mr-0 pr-0">
-    <div class="row align-items-center col-12 mr-0 pr-0 justify-content-between" name="info-part">
-      <div class="col-auto row">
-        <div class="row col-auto">
-          <% if content.user.avatar.file.nil? %>
-            <button class="rounded-circle chosen border-0"><%= content.user.avatar_name%></button>
-          <% else %>
-            <%= image_tag content.user.avatar.avatar.url, {class: "rounded-circle img-fluid"} %>
-          <% end %>
-          <a href="<%= user_path(content.user.id)%>" class="btn font-size pl-1 "><%= content.user.name%></a>
-        </div>
-      </div>
-      <div class="col-auto p-0 m-0 float-right">
-        <% if current_user.id.to_i != content.user.id.to_i%>
-          <% if followed(current_user.id, content.user.id)%>
-            <%= link_to "following", toggle_follow_path(follower_id: current_user.id, followee_id: content.user.id), {remote: true, name:"follow_#{content.user.id}", class:"btn followed py-0 px-1 btn-sm rounded-pill font-size-sm"}%>
-          <% else %>
-            <%= link_to "follow", toggle_follow_path(follower_id: current_user.id, followee_id: content.user.id), {remote: true, name:"follow_#{content.user.id}", class: "btn follow py-0 px-1 btn-sm rounded-pill font-size-sm"}%>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class="row font-weight-bold col-12" name="title-post"><%= content.title %> </div>
-    <div class="row col-12" name="description-post"><%= content.description %></div>
-    <div class="row justify-content-between align-items-end col-12 mr-0 pr-0">
-      <%= link_to toggle_like_path(content_id: content.id, content_type: content_type), {name: "like_#{content.id}", remote: true} do %>
-        <div class="col text-color font-size">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="12" height="12"
-          fill="<% if liked(content.id, content_type) %>rgb(60, 90, 154)<% else %>lightgrey<% end %>">
-            <path fill-rule="evenodd" d="M7.655 14.916L8 14.25l.345.666a.752.752 0 01-.69 0zm0 0L8 14.25l.345.666.002-.001.006-.003.018-.01a7.643 7.643 0 00.31-.17 22.08 22.08 0 003.433-2.414C13.956 10.731 16 8.35 16 5.5 16 2.836 13.914 1 11.75 1 10.203 1 8.847 1.802 8 3.02 7.153 1.802 5.797 1 4.25 1 2.086 1 0 2.836 0 5.5c0 2.85 2.045 5.231 3.885 6.818a22.075 22.075 0 003.744 2.584l.018.01.006.003h.002z"></path>
-          </svg>
-          <span><%= content.likes_count%></span>
-        </div>
-      <% end %>
-      <div class="col-auto text-secondary font-size-sm mr-0 pr-0 text-right"><%= l content.updated_at, format: :last_update%></div>
-    </div>
+    <%= render partial: "shared/user_display_discover", locals: {content: content}%>
+    <%= render partial: "shared/content_details", locals: {content: content, content_type: content_type}%>
   </div>
 </div>

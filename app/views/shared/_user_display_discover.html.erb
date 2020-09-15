@@ -1,0 +1,21 @@
+<div class="row align-items-center col-12 mr-0 pr-0 justify-content-between" name="info-part">
+  <div class="col-auto row">
+    <div class="row col-auto">
+      <% if content.user.avatar.file.nil? %>
+        <button class="rounded-circle chosen border-0"><%= content.user.avatar_name%></button>
+      <% else %>
+        <%= image_tag content.user.avatar.avatar.url, {class: "rounded-circle img-fluid"} %>
+      <% end %>
+      <a href="<%= user_path(content.user.id)%>" class="btn font-size pl-1 "><%= content.user.name%></a>
+    </div>
+  </div>
+  <div class="col-auto p-0 m-0 float-right">
+    <% if current_user.id.to_i != content.user.id.to_i%>
+      <% if followed(current_user.id, content.user.id)%>
+        <%= link_to "following", toggle_follow_path(follower_id: current_user.id, followee_id: content.user.id), {remote: true, name:"follow_#{content.user.id}", class:"btn followed py-0 px-1 btn-sm rounded-pill font-size-sm"}%>
+      <% else %>
+        <%= link_to "follow", toggle_follow_path(follower_id: current_user.id, followee_id: content.user.id), {remote: true, name:"follow_#{content.user.id}", class: "btn follow py-0 px-1 btn-sm rounded-pill font-size-sm"}%>
+      <% end %>
+    <% end %>
+  </div>
+</div>
