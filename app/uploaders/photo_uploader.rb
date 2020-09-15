@@ -1,6 +1,11 @@
 class PhotoUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  include Cloudinary::CarrierWave
+
+  if Rails.env.development?
+    storage :file
+  else
+    include Cloudinary::CarrierWave
+  end
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
