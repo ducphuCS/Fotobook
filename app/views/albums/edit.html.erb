@@ -4,7 +4,7 @@
     <%= render "shared/feed_discover"%>
     <div class="col-sm-9 col-12 p-3">
       <div class="col bg-white pb-3 mb-5">
-        <div class="font-weight-bold border-bottom pt-4 pb-3 justify-content-between row mx-1" style="font-size:20px;">
+        <div class="font-weight-bold border-bottom pt-4 pb-3 justify-content-between row mx-1 font-size-20">
           <div class="col">
             <%= t ('.header')%>
           </div>
@@ -37,11 +37,11 @@
                 <%= image_tag photo.image.thumb.url, {class: "form-group-vertical bg-grey rounded add-photo col-sm-3 col-12 mr-3"} %>
               <% end %>
             <% end %>
-            <div class="form-group-vertical bg-grey rounded add-photo" style="height:200px; width:200px">
-              <%= f.file_field :image, {style: "opacity:0; height: 200px; width: 200px"}%>
+            <div class="form-group-vertical bg-grey rounded add-photo square-200">
+              <%= f.file_field :image, {class: "square-200 o-0"}%>
             </div>
           </div>
-          <div class="row mx-2 my-5 justify-content-between" style="width:200px;">
+          <div class="row mx-2 my-5 justify-content-between w-200">
             <%= submit_tag t('.save'), {class: "btn add px-3"}%>
             <%= link_to t('.delete'), album_path(@album.id), {class: "btn delete px-3", method: :delete}%>
           </div>

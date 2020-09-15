@@ -11,7 +11,7 @@
     <%= render "shared/feed_discover"%>
     <div class="col-sm-9 col-12 p-3">
       <div class="col bg-white pb-3 mb-5">
-        <div class="font-weight-bold border-bottom py-4" style="font-size:20px;"><%= t ('.header')%></div>
+        <div class="font-weight-bold border-bottom py-4 font-size-20"><%= t ('.header')%></div>
         <div class="row mb-5 justify-content-center">
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "col-sm-8 col-12" }) do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>
@@ -28,7 +28,7 @@
                 </div>
               </div>
             </div>
-            <div class="row mb-3" style="width: 100%;font-size:16px">
+            <div class="row mb-3 font-size-16">
               <div class="col-12 row text-color justify-content-center my-2 font-weight-bold">
                 <div class="col-4"></div>
                 <div class="col-8">Basic Information</div>
@@ -55,7 +55,7 @@
               </div>
             </div>
 
-            <div class="row mb-3" style="width: 100%;font-size:16px">
+            <div class="row mb-3 font-size-16"
               <div class="field form-group row col-12">
                 <%= f.label :current_password, t('.current_password'), class: "col-4 text-right" %>
                 <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control col-8", placeholder:"Current Password" %>

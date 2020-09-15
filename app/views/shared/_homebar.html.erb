@@ -11,13 +11,13 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#user-bar" aria-controls="user-bar" ria-expanded="false" aria-label="Toggle navigation">
       <a class="nav-toggle-icon btn rounded-circle bg-white text-color border-0 px-2"><%= current_user.avatar_name%></a>
     </button>
-    <div class="collapse navbar-collapse" id="user-bar" style="z-index: 100">
+    <div class="collapse navbar-collapse z-100" id="user-bar">
       <div class="navbar-nav col-12 justify-content-end align-items-center bg">
         <div class="col-auto row navbar-nav">
           <% if current_user.avatar.file.nil? %>
             <a href="<%= user_path(current_user.id)%>" class="nav-item nav-link btn rounded-circle bg-white text-color border-0 px-2"><%= current_user.avatar_name%></a>
           <% else %>
-            <%= image_tag current_user.avatar.thumb.url, {class: "nav-item nav-link btn rounded-circle img-fluid p-0", style: "height:40px"} %>
+            <%= image_tag current_user.avatar.thumb.url, {class: "nav-item nav-link btn rounded-circle img-fluid p-0 h-40"} %>
           <% end %>
           <% if !current_user.admin%>
             <a href="<%= user_path(current_user.id)%>" class="nav-item nav-link btn text-white border-0"><%= current_user.name%></a>

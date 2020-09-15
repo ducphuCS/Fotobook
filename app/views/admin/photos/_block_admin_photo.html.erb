@@ -1,7 +1,7 @@
 <div class="position-relative col-sm col-12 mx-3 p-0">
   <%= image_tag content.image.thumb.url, {class: "img-fluid rounded"}%>
   <div class="edit-admin font-size text-white m-0 row justify-content-between">
-    <div class="col-10 p-0" style="overflow:hidden; text-overflow:ellipsis">
+    <div class="col-10 p-0 overflow-dot">
       <%= content.description%>
     </div>
     <a href="<%= edit_admin_photo_path(content.id)%>" class="text-white float-right col-1 pl-0">

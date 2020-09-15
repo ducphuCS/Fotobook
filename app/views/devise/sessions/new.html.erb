@@ -1,7 +1,7 @@
 
 <div class="container-fluid">
   <%= render "shared/homebar_unauthenticated"%>
-  <div class="row" style="height:30px;">
+  <div class="row h-30">
   </div>
   <div class="row justify-content-center mt-5">
     <div class="col-6">
@@ -22,11 +22,11 @@
       </div>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "row justify-content-center col-12", id: "login_form"}) do |f| %>
         <div class="field col-11">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email", class:"form-control", style:"border-bottom-left-radius: 0; border-bottom-right-radius:0" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email", class:"form-control"%>
         </div>
 
         <div class="field col-11">
-          <%= f.password_field :password, autocomplete: "current-password", placeholder:"Password", class:"form-control", style:"border-bottom-left-radius: 0; border-bottom-right-radius:0" %>
+          <%= f.password_field :password, autocomplete: "current-password", placeholder:"Password", class:"form-control"%>
         </div>
 
         <% if devise_mapping.rememberable? %>
@@ -37,7 +37,7 @@
         <% end %>
 
         <div class="actions justify-content-center row col-12 my-4">
-          <%= f.submit t('.login'), class: "btn chosen col-4 rounded-lg", style:"height:50px; font-size:20px" %>
+          <%= f.submit t('.login'), class: "btn chosen col-4 rounded-lg font-size-20 h-50"%>
         </div>
       <% end %>
       <%= render "devise/shared/links" %>

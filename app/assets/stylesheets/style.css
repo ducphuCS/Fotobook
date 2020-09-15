@@ -74,6 +74,12 @@
 .font-size-sm {
   font-size: 8px;
 }
+.font-size-20 {
+  font-size: 20px;
+}
+.font-size-16 {
+  font-size: 16px;
+}
 .text-color {
   color: rgb(60, 90, 154);
 }
@@ -114,6 +120,37 @@
 .add-photo {
   border: 2px dashed lightgrey;
 }
+.z-100 {
+  z-index: 100
+}
+.overflow-dot {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.square-200 {
+  height: 200px;
+  width: 200px
+}
+.o-0 {
+  opacity: 0;
+}
+.w-200 {
+  width: 200px
+}
+.h-500 {
+  height: 500px;
+}
+.h-30 {
+  height: 30px;
+}
+.h-50 {
+  height: 50px;
+}
+.h-40 {
+  height: 40px;
+}
+
+
 /* album css */
 .album-thumb {
   display: inline-block;
