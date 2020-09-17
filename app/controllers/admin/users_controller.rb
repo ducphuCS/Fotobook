@@ -11,7 +11,11 @@ class Admin::UsersController < ApplicationController
 
   def update
     @user = User.find(get_user_id)
-    @user.update_attributes(user_params)
+    if params[:user][:password].blank?
+      @user.update_without_password(user_params)
+    else
+      @user.update(user_params)
+    end
     redirect_to admin_users_path
   end
 
