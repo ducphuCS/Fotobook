@@ -1,9 +1,9 @@
 <div class="col-sm-6 col-6 thumb album-thumb border-0">
   <div class="thumb-container justify-content-center row">
     <div class="images-container">
-      <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image"}%>
-      <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image"}%>
-      <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image"}%>
+      <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image", onclick:"modal_album(#{content.id})"}%>
+      <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image", onclick:"modal_album(#{content.id})"}%>
+      <%= image_tag content.photos.first.image.thumb.url, {class: "img-fluid thumb-image", onclick:"modal_album(#{content.id})"}%>
     </div>
     <div class="photo-count">
       <div class="content">
@@ -13,3 +13,12 @@
     </div>
   </div>
 </div>
+<script>
+  function modal_album(album_id) {
+    var container = $(".carousel-inner");
+    $.get("get_album.js", {content_id: album_id}, function() {
+    }).done(function(data) {
+      container.html(data);
+    })
+  }
+</script>

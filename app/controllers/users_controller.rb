@@ -65,6 +65,14 @@ class UsersController < ApplicationController
     render "toggle_like", locals: {id: content_id}
   end
 
+  def get_album
+    photos = Album.find(params[:content_id]).photos
+    html = String.new
+    photos.each do |p|
+      html += '<div class="carousel-item active"><img src="'+ p.image.url + '" class="d-block w-100"></div>'
+    end
+    render :js => html
+  end
 
 
   def liked(content_id, content_type)
