@@ -16,6 +16,9 @@ class Admin::UsersController < ApplicationController
     else
       @user.update(user_params)
     end
+    unless @user.active?
+      SignUpMailerJob.perform_now @user, "inactive"
+    end
     redirect_to admin_users_path
   end
 

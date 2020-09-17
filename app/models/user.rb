@@ -44,6 +44,7 @@ class User < ApplicationRecord
 
   # send sign up mail
   # after_commit :send_welcome_mail
+  after_destroy :send_mail
 
   # method
   def name
@@ -55,11 +56,10 @@ class User < ApplicationRecord
   end
 
 
-  # private
-  #
-  # def send_welcome_mail
-  #   puts "after_save User"
-  #   SignUpMailerJob.perform_now self
-  # end
+  private
+
+  def send_mail
+    SignUpMailerJob.delete_now self, "delete"
+  end
 
 end
