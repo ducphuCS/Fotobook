@@ -10,7 +10,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   def default_url(*args)
     # "/assets/images/fallback/" + [thumb, "ghost.png"].compact.join('_')
     # "/fallback/ghost.png"
-    ActionController::Base.helpers.asset_path("fallback/" + "ghost.png")
+    ActionController::Base.helpers.asset_path("fallback/" + [version_name, "ghost.png"].compact.join('_'))
   end
 
   def store_dir
