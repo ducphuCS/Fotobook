@@ -1,9 +1,7 @@
 <div class="row align-items-center col-12 mr-0 pr-0 justify-content-between" name="info-part">
-  <div class="col-auto row">
-    <div class="row col-auto">
-      <%= image_tag content.user.avatar.avatar.url, {class: "rounded-circle img-fluid"} %>
-      <a href="<%= user_path(content.user.id)%>" class="btn font-size pl-1 "><%= content.user.name%></a>
-    </div>
+  <div class="row col-auto">
+    <%= image_tag content.user.avatar.avatar.url, {class: "rounded-circle img-fluid"} %>
+    <a href="<%= user_path(content.user.id)%>" class="btn font-size pl-1 "><%= content.user.name%></a>
   </div>
   <div class="col-auto p-0 m-0 float-right">
     <% if current_user.id.to_i != content.user.id.to_i%>

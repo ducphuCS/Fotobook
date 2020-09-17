@@ -17,7 +17,7 @@
           <% if current_user.avatar.file.nil? %>
             <a href="<%= user_path(current_user.id)%>" class="nav-item nav-link btn rounded-circle bg-white text-color border-0 px-2"><%= current_user.avatar_name%></a>
           <% else %>
-            <%= image_tag current_user.avatar.thumb.url, {class: "nav-item nav-link btn rounded-circle img-fluid p-0 h-40"} %>
+            <%= image_tag current_user.avatar.avatar.url, {class: "nav-item nav-link btn rounded-circle img-fluid p-0 h-40 w-40"} %>
           <% end %>
           <% if !current_user.admin%>
             <a href="<%= user_path(current_user.id)%>" class="nav-item nav-link btn text-white border-0"><%= current_user.name%></a>
@@ -32,3 +32,4 @@
     </div>
   </nav>
 </div>
+<%= stylesheet_link_tag 'style.css', media: 'all' %>
