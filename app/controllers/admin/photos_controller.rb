@@ -16,8 +16,13 @@ class Admin::PhotosController < ApplicationController
   end
 
   def destroy
+    album_id = Photo.find(get_photo_id).album_id
     Photo.destroy(get_photo_id)
-    redirect_to admin_path(content: "photo")
+    if album_id.nil?
+      redirect_to admin_photos_path(content: "photo")
+    else
+      redirect_to edit_admin_album_path(album_id)
+    end
   end
 
 

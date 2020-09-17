@@ -12,11 +12,11 @@
             <%= link_to t('.back'), admin_albums_path, {class: "btn chosen"}%>
           </div>
         </div>
-        <%= form_for @photo, url: admin_albums_path, method: :patch do |f| %>
+        <%= form_for @photo, url: admin_album_path, method: :patch do |f| %>
           <%= render partial: "shared/edit_album", locals: {f: f}%>
           <div class="row mx-2 my-5 justify-content-between w-200">
             <%= submit_tag t('.save'), {class: "btn add px-3"}%>
-            <%= link_to t('.delete'), admin_albums_path(@album.id), {class: "btn delete px-3", method: :delete}%>
+            <%= link_to t('.delete'), admin_album_path(@album.id), {class: "btn delete px-3", method: :delete}%>
           </div>
         <% end %>
       </div>

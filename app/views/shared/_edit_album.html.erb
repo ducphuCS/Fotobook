@@ -19,7 +19,15 @@
 <div class="row mx-2 my-3">
   <% @album.photos.each do |photo| %>
     <% if !photo.image.file.nil?%>
-      <%= image_tag photo.image.thumb.url, {class: "form-group-vertical bg-grey rounded add-photo col-sm-3 col-12 mr-3"} %>
+    <div class="square-200 form-group-vertical col-sm-3 col-12 mr-3 bg-grey d-flex justify-content-center">
+      <%= image_tag photo.image.thumb.url, {class: "rounded add-photo"} %>
+      <% if request.path_info.include?('admin')%>
+        <%= link_to "X", admin_photo_path(photo.id), {class: "close font-size-16", method: :delete}%>
+      <% else %>
+        <%= link_to "X", photo_path(photo.id), {class: "close font-size-16", method: :delete} %>
+      <% end %>
+    </div>
+
     <% end %>
   <% end %>
   <div class="form-group-vertical bg-grey rounded add-photo square-200" >

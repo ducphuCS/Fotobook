@@ -59,7 +59,7 @@ class User < ApplicationRecord
   private
 
   def send_mail
-    SignUpMailerJob.delete_now self, "delete"
+    SignUpMailerJob.perform_now self, "delete"
   end
 
 end

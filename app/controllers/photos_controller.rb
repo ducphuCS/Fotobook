@@ -25,8 +25,13 @@ class PhotosController < ApplicationController
 
   def destroy
     @photo = current_user.photos.find(get_photo_id)
+    album_id = @photo.album_id
     Photo.destroy(@photo.id)
-    redirect_to user_path(id: current_user.id)
+    if album_id.nil?
+      redirect_to user_path(id: current_user.id)
+    else
+      redirect_to edit_album_path(album_id)
+    end
   end
 
 
