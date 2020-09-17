@@ -6,11 +6,7 @@
       <div class="bg-white col">
         <div class="col row py-5 px-4" name="profile-header">
           <div class="col-sm-3 col-12">
-            <% if @user.avatar.file.nil?%>
-              <h1 class="rounded-circle bg text-white row align-items-center justify-content-center mx-3" style="height:100%"><%= @user.avatar_name%></h1>
-            <% else %>
-              <%= image_tag @user.avatar.thumb.url, {class: "img-fluid rounded-circle"}%>
-            <% end %>
+            <%= image_tag @user.avatar.thumb.url, {class: "img-fluid rounded-circle"}%>
           </div>
           <div class="col-sm-9 col-12">
             <div class="row mb-3">

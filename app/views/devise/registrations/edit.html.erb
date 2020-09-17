@@ -12,11 +12,7 @@
               <div class="col-3"></div>
               <div class="col-9">
                 <div class="row mt-5 mb-3 position-relative col-sm-6 col-12 justify-content-center" name="profile-image">
-                  <% if current_user.avatar.file.nil?%>
-                    <img src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.0-9/116212777_2941769292612649_3417797964556573653_o.png?_nc_cat=107&_nc_sid=09cbfe&_nc_ohc=reSenZfdMa0AX_P62Vw&_nc_ht=scontent.fsgn2-1.fna&oh=b036e28f8182b447d68134f50e3e2fdd&oe=5F746402" alt="profile-image" class="img-fluid rounded"/>
-                  <% else %>
-                    <%= image_tag current_user.avatar.thumb.url, {class: "img-fluid rounded"}%>
-                  <% end %>
+                  <%= image_tag current_user.avatar.thumb.url, {class: "img-fluid rounded"}%>
                   <%= f.file_field :avatar, {class: "btn bg-white text-secondary change"}%>
                 </div>
               </div>

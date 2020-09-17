@@ -7,6 +7,12 @@ class PhotoUploader < CarrierWave::Uploader::Base
     include Cloudinary::CarrierWave
   end
 
+  def default_url(*args)
+    # "/assets/images/fallback/" + [thumb, "ghost.png"].compact.join('_')
+    # "/fallback/ghost.png"
+    ActionController::Base.helpers.asset_path("fallback/" + "ghost.png")
+  end
+
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
